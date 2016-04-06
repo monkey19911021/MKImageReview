@@ -1,0 +1,2 @@
+/Users/MD/Library/Developer/Xcode/DerivedData/MKImageReview-avgbmwxcdodsdpexmvcjwxripakn/Build/Products/Debug-iphonesimulator/MKImageReview.app
+iPhone Developer

@@ -7,15 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C9959B01CAB738F00CCAAA9 /* MKCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9959AF1CAB738F00CCAAA9 /* MKCollectionViewCell.m */; };
+		6C9959B51CAC206000CCAAA9 /* MKFileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9959B41CAC206000CCAAA9 /* MKFileObject.m */; };
+		6C9959B81CAC22BB00CCAAA9 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9959B71CAC22BB00CCAAA9 /* Utils.m */; };
 		6CC184E21C92A16C009DA0DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC184E11C92A16C009DA0DC /* main.m */; };
 		6CC184E51C92A16C009DA0DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC184E41C92A16C009DA0DC /* AppDelegate.m */; };
 		6CC184E81C92A16C009DA0DC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC184E71C92A16C009DA0DC /* ViewController.m */; };
 		6CC184EB1C92A16C009DA0DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC184E91C92A16C009DA0DC /* Main.storyboard */; };
 		6CC184ED1C92A16C009DA0DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CC184EC1C92A16C009DA0DC /* Assets.xcassets */; };
 		6CC184F01C92A16C009DA0DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC184EE1C92A16C009DA0DC /* LaunchScreen.storyboard */; };
+		6CC184F81C92AFE3009DA0DC /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC184F71C92AFE3009DA0DC /* LocalAuthentication.framework */; };
+		6CC184FB1C92C34F009DA0DC /* MKValidUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC184FA1C92C34F009DA0DC /* MKValidUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C9959AE1CAB738F00CCAAA9 /* MKCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCollectionViewCell.h; sourceTree = "<group>"; };
+		6C9959AF1CAB738F00CCAAA9 /* MKCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCollectionViewCell.m; sourceTree = "<group>"; };
+		6C9959B31CAC206000CCAAA9 /* MKFileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKFileObject.h; sourceTree = "<group>"; };
+		6C9959B41CAC206000CCAAA9 /* MKFileObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKFileObject.m; sourceTree = "<group>"; };
+		6C9959B61CAC22BB00CCAAA9 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		6C9959B71CAC22BB00CCAAA9 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		6CC184DD1C92A16C009DA0DC /* MKImageReview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MKImageReview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CC184E11C92A16C009DA0DC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6CC184E31C92A16C009DA0DC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -26,6 +37,9 @@
 		6CC184EC1C92A16C009DA0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CC184EF1C92A16C009DA0DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CC184F11C92A16C009DA0DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CC184F71C92AFE3009DA0DC /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		6CC184F91C92C34F009DA0DC /* MKValidUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKValidUtil.h; sourceTree = "<group>"; };
+		6CC184FA1C92C34F009DA0DC /* MKValidUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKValidUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,15 +47,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CC184F81C92AFE3009DA0DC /* LocalAuthentication.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C9959AD1CAB732B00CCAAA9 /* items */ = {
+			isa = PBXGroup;
+			children = (
+				6C9959AE1CAB738F00CCAAA9 /* MKCollectionViewCell.h */,
+				6C9959AF1CAB738F00CCAAA9 /* MKCollectionViewCell.m */,
+			);
+			path = items;
+			sourceTree = "<group>";
+		};
+		6C9959B11CAC1F7D00CCAAA9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				6C9959B31CAC206000CCAAA9 /* MKFileObject.h */,
+				6C9959B41CAC206000CCAAA9 /* MKFileObject.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		6C9959B21CAC1FCD00CCAAA9 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				6C9959B61CAC22BB00CCAAA9 /* Utils.h */,
+				6C9959B71CAC22BB00CCAAA9 /* Utils.m */,
+				6CC184F91C92C34F009DA0DC /* MKValidUtil.h */,
+				6CC184FA1C92C34F009DA0DC /* MKValidUtil.m */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 		6CC184D41C92A16C009DA0DC = {
 			isa = PBXGroup;
 			children = (
+				6CC184F71C92AFE3009DA0DC /* LocalAuthentication.framework */,
 				6CC184DF1C92A16C009DA0DC /* MKImageReview */,
 				6CC184DE1C92A16C009DA0DC /* Products */,
 			);
@@ -58,6 +103,9 @@
 		6CC184DF1C92A16C009DA0DC /* MKImageReview */ = {
 			isa = PBXGroup;
 			children = (
+				6C9959B21CAC1FCD00CCAAA9 /* util */,
+				6C9959B11CAC1F7D00CCAAA9 /* model */,
+				6C9959AD1CAB732B00CCAAA9 /* items */,
 				6CC184E31C92A16C009DA0DC /* AppDelegate.h */,
 				6CC184E41C92A16C009DA0DC /* AppDelegate.m */,
 				6CC184E61C92A16C009DA0DC /* ViewController.h */,
@@ -110,6 +158,7 @@
 				TargetAttributes = {
 					6CC184DC1C92A16C009DA0DC = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 9K57E9BZ8A;
 					};
 				};
 			};
@@ -149,8 +198,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C9959B51CAC206000CCAAA9 /* MKFileObject.m in Sources */,
+				6C9959B01CAB738F00CCAAA9 /* MKCollectionViewCell.m in Sources */,
 				6CC184E81C92A16C009DA0DC /* ViewController.m in Sources */,
 				6CC184E51C92A16C009DA0DC /* AppDelegate.m in Sources */,
+				6CC184FB1C92C34F009DA0DC /* MKValidUtil.m in Sources */,
+				6C9959B81CAC22BB00CCAAA9 /* Utils.m in Sources */,
 				6CC184E21C92A16C009DA0DC /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,10 +314,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MKImageReview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.minstone.MKImageReview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -272,10 +328,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MKImageReview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.minstone.MKImageReview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -298,6 +357,7 @@
 				6CC184F61C92A16C009DA0DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
