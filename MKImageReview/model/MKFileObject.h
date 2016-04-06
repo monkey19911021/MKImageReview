@@ -32,8 +32,21 @@ typedef NS_ENUM(NSInteger, MKFileType) {
 
 
 
-//获取当前路径下所有某类型的文件
--(NSArray<NSString *> *)getCurrentPathFile:(MKFileType)fileType path:(NSString *)path;
+/**
+ *  获取路径下所有某类型的文件
+ *
+ *  @param path     路径
+ *  @param fileType 文件类型
+ *
+ *  @return 文件路径集合
+ */
++(NSArray<NSString *> *)getFilesInPath:(NSString *)path fileType:(MKFileType)fileType;
 
 
+/**
+ *  获取当前文件所在目录所有相同类型的文件集合
+ *
+ *  @return 文件路径集合
+ */
+-(NSArray<NSString *> *)getDirectoryFiles;
 @end

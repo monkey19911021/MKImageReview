@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+//屏幕宽度
+#define SCREENWIDTH ([UIScreen mainScreen].bounds.size.width)
+
+//屏幕高度
+#define SCREENHEIGHT ([UIScreen mainScreen].bounds.size.height)
 
 //应用图片文件路径
 #define InternetImageFilePath ([NSString stringWithFormat:@"%@/Library/Caches/internetImage", [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]])

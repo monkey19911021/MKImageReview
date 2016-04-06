@@ -10,7 +10,7 @@
 
 @implementation MKFileObject
 
--(NSArray<NSString *> *)getCurrentPathFile:(MKFileType)fileType path:(NSString *)path
++(NSArray<NSString *> *)getFilesInPath:(NSString *)path fileType:(MKFileType)fileType;
 {
     NSMutableArray<NSString *> *filePaths = [NSMutableArray new];
     
@@ -24,12 +24,18 @@
         NSArray<NSString *> *subPaths = [fileManager contentsOfDirectoryAtPath:path error:NULL];
         for(NSString *subPath in subPaths){
             if([IMAGES_TYPES containsObject: [subPath pathExtension]]){
-                [filePaths addObject:subPath];
+                [filePaths addObject: [NSString stringWithFormat:@"%@/%@", path, subPath]];
             }
         }
     }
     
     return filePaths;
+}
+
+
+-(NSArray<NSString *> *)getDirectoryFiles
+{
+    return [MKFileObject getFilesInPath:self.filePath fileType:self.fileType];
 }
 
 @end

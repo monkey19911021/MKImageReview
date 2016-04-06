@@ -11,6 +11,7 @@
 #import "MKCollectionViewCell.h"
 #import "Utils.h"
 #import "MKFileObject.h"
+#import "MKImagesReViewController.h"
 
 #define ContCollectionViewCellIdentifier @"cellIde"
 
@@ -65,6 +66,7 @@
         MKFileObject *object = [MKFileObject new];
         object.name = BackString;
         object.image = [UIImage imageNamed: @"icon_back"];
+        object.fileType = MKFileTypeDirectory;
         [domArray addObject: object];
     }
     
@@ -73,8 +75,8 @@
     for(NSString *str in subPathsArray){
         MKFileObject *object = [MKFileObject new];
         object.name = str;
-        
-        NSString *path = [NSString stringWithFormat:@"%@/%@", filePath, str];
+        object.filePath = [NSString stringWithFormat:@"%@/%@", filePath, str];
+        NSString *path = object.filePath;
         BOOL isDirectory = true;
         [fileManager fileExistsAtPath:path isDirectory: &isDirectory];
         object.image = [UIImage imageNamed: @"fielIcon"];
@@ -123,20 +125,35 @@
     [collectionView deselectItemAtIndexPath: indexPath animated: YES];
     
     MKFileObject *fileObject = [domArray objectAtIndex: indexPath.row];
-    NSString *fileName = fileObject.name;
-    if([fileName isEqualToString:BackString]){
-        NSArray<NSString *> *filePathArray = [filePath componentsSeparatedByString: @"/"];
-        NSMutableString *tempFilePath = [NSMutableString new];
-        for(int i=0; i<filePathArray.count-1; i++){
-            [tempFilePath appendFormat: @"/%@", filePathArray[i]];
+
+    switch (fileObject.fileType) {
+        case MKFileTypeDirectory:
+        {
+            NSString *fileName = fileObject.name;
+            if([fileName isEqualToString:BackString]){
+                filePath = [filePath stringByDeletingLastPathComponent];
+            }else{
+                filePath = [NSString stringWithFormat: @"%@/%@", filePath, fileObject.name];
+            }
+            [self loadData];
         }
-        filePath = [NSString stringWithString: tempFilePath];
-    }else{
-        filePath = [NSString stringWithFormat: @"%@/%@", filePath, fileObject.name];
+            break;
+        case MKFileTypeImage:
+        {
+            NSArray<NSString *> *filePaths = [fileObject getDirectoryFiles];
+            [[MKImagesReViewController new] showImages:filePaths index:indexPath.row-1 afterDismissBlock:NULL];
+        }
+            break;
+        case MKFileTypeTxt:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
     }
     
-    
-    [self loadData];
     
 }
 
