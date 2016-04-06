@@ -71,21 +71,24 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray<NSString *> *subPathsArray = [fileManager contentsOfDirectoryAtPath: filePath error: NULL];
     for(NSString *str in subPathsArray){
+        MKFileObject *object = [MKFileObject new];
+        object.name = str;
+        
         NSString *path = [NSString stringWithFormat:@"%@/%@", filePath, str];
         BOOL isDirectory = true;
         [fileManager fileExistsAtPath:path isDirectory: &isDirectory];
-        UIImage *image = [UIImage imageNamed: @"fielIcon"];
+        object.image = [UIImage imageNamed: @"fielIcon"];
+        
         if(isDirectory){
-            image = [UIImage imageNamed: @"dirIcon"];
+            object.image = [UIImage imageNamed: @"dirIcon"];
+            object.fileType = MKFileTypeDirectory;
         }else{
-            if([[path pathExtension] isEqualToString:@"jpg"] || [[path pathExtension] isEqualToString:@"png"]){
-                image = [UIImage imageWithContentsOfFile: path];
+            if([IMAGES_TYPES containsObject: [path pathExtension]]){
+                object.image = [UIImage imageWithContentsOfFile: path];
+                object.fileType = MKFileTypeImage;
             }
         }
         
-        MKFileObject *object = [MKFileObject new];
-        object.name = str;
-        object.image = image;
         [domArray addObject: object];
     }
     filePathTextField.text = filePath;

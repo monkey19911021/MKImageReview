@@ -13,7 +13,7 @@
 //应用图片文件路径
 #define InternetImageFilePath ([NSString stringWithFormat:@"%@/Library/Caches/internetImage", [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]])
 
-#define HomeFilePath ([NSString stringWithFormat:@"%@", [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]])
+#define HomeFilePath ([NSString stringWithFormat:@"%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]])
 
 @interface Utils : NSObject
 
