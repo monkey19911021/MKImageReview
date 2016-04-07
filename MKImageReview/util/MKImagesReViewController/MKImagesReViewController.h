@@ -17,6 +17,8 @@
  *  @param index           显示第几张
  *  @param dismissBlock    浏览完之后的事件
  */
--(void)showImages:(NSArray<NSString *> *)imagesPathArray index:(NSInteger)index afterDismissBlock:(void (^)(NSInteger))dismissBlock;
+-(void)showImages:(NSArray<NSString *> *)imagesPathArray
+            index:(NSInteger)index
+afterDismissBlock:(void (^)(NSInteger))dismissBlock;
 
 @end

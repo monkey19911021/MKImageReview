@@ -14,4 +14,6 @@
 
 @property(strong, nonatomic, readonly)UIImageView *imageView;
 
+@property(assign, nonatomic)BOOL isSelected;
+
 @end

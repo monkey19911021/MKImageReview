@@ -46,4 +46,14 @@
     return self;
 }
 
+-(void)setIsSelected:(BOOL)isSelected
+{
+    _isSelected = isSelected;
+    if(_isSelected){
+        self.layer.borderColor = [UIColor redColor].CGColor;
+    }else{
+        self.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    }
+}
+
 @end

@@ -41,7 +41,9 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)showImages:(NSArray<NSString *> *)imagesPathArray index:(NSInteger)index afterDismissBlock:(void (^)(NSInteger))dismissBlock
+-(void)showImages:(NSArray<NSString *> *)imagesPathArray
+            index:(NSInteger)index
+afterDismissBlock:(void (^)(NSInteger))dismissBlock
 {
     if(photoPreviewScrollView == nil){
         photoPreviewScrollView = [[JT3DScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];

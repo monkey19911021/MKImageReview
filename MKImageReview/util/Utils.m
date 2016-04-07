@@ -34,4 +34,18 @@
 
 }
 
+
++ (NSDictionary *)objectClassInArray{
+    return @{@"hobby" : [Hobby class]};
+}
 @end
+@implementation Address
+
+@end
+
+
+@implementation Hobby
+
+@end
+
+

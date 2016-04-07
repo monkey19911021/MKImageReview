@@ -21,14 +21,14 @@ typedef NS_ENUM(NSInteger, MKFileType) {
 
 @interface MKFileObject : NSObject
 
-@property(strong, nonatomic)NSString *name;
+@property (strong, nonatomic) NSString   *name;
 
 //图标
-@property(strong, nonatomic)UIImage *image;
+@property (strong, nonatomic) UIImage    *image;
 
-@property(assign, nonatomic)MKFileType fileType;
+@property (assign, nonatomic) MKFileType fileType;
 
-@property(strong, nonatomic)NSString *filePath;
+@property (strong, nonatomic) NSString   *filePath;
 
 
 

@@ -24,5 +24,4 @@
 
 +(Utils *)sharedConfig;
 
-
 @end

@@ -37,7 +37,8 @@
     filePath = HomeFilePath;
     
     [contCollectionView setCollectionViewLayout: [self collectionViewFlowLayout]];
-    [contCollectionView registerClass:[MKCollectionViewCell class] forCellWithReuseIdentifier: ContCollectionViewCellIdentifier];
+    [contCollectionView registerClass:[MKCollectionViewCell class]
+           forCellWithReuseIdentifier: ContCollectionViewCellIdentifier];
     
 //    [[MKValidUtil new] validUserWithsuccess:^{
     
@@ -71,7 +72,8 @@
     }
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray<NSString *> *subPathsArray = [fileManager contentsOfDirectoryAtPath: filePath error: NULL];
+    NSArray<NSString *> *subPathsArray = [fileManager contentsOfDirectoryAtPath: filePath
+                                                                          error: NULL];
     for(NSString *str in subPathsArray){
         MKFileObject *object = [MKFileObject new];
         object.name = str;
@@ -98,19 +100,24 @@
 }
 
 #pragma mark - delegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section
 {
     return domArray.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *identifier = ContCollectionViewCellIdentifier;
-    MKCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    MKCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier
+                                                                           forIndexPath:indexPath];
     
     //设置高亮背景
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
-    backgroundView.backgroundColor = [UIColor colorWithRed:68/255.0f green:179/255.0f blue:236/255.0f alpha:0.5];
+    CGRect bgViewFrame = CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height);
+    UIColor *bgViewColor = [UIColor colorWithRed:68/255.0f green:179/255.0f blue:236/255.0f alpha:0.5];
+    UIView *backgroundView = [[UIView alloc] initWithFrame: bgViewFrame];
+    backgroundView.backgroundColor = bgViewColor;
     [backgroundView.layer setCornerRadius:5];
     [cell setSelectedBackgroundView:backgroundView];
     
@@ -121,7 +128,9 @@
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView
+didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
     [collectionView deselectItemAtIndexPath: indexPath animated: YES];
     
     MKFileObject *fileObject = [domArray objectAtIndex: indexPath.row];
@@ -141,7 +150,15 @@
         case MKFileTypeImage:
         {
             NSArray<NSString *> *filePaths = [fileObject getDirectoryFiles];
-            [[MKImagesReViewController new] showImages:filePaths index:indexPath.row-1 afterDismissBlock:NULL];
+            [[MKImagesReViewController new] showImages:filePaths
+                                                 index:indexPath.row-1
+                                     afterDismissBlock:^(NSInteger index) {
+                                         __block NSIndexPath *targetIndexPath = [NSIndexPath indexPathForRow:index
+                                                                                                   inSection:indexPath.section];
+                                         [contCollectionView scrollToItemAtIndexPath:targetIndexPath
+                                                                    atScrollPosition:UICollectionViewScrollPositionTop
+                                                                            animated:YES];
+            }];
         }
             break;
         case MKFileTypeTxt:
