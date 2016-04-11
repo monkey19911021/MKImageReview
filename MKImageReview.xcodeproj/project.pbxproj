@@ -13,6 +13,8 @@
 		6C9959B01CAB738F00CCAAA9 /* MKCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9959AF1CAB738F00CCAAA9 /* MKCollectionViewCell.m */; };
 		6C9959B51CAC206000CCAAA9 /* MKFileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9959B41CAC206000CCAAA9 /* MKFileObject.m */; };
 		6C9959B81CAC22BB00CCAAA9 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9959B71CAC22BB00CCAAA9 /* Utils.m */; };
+		6CADDC361CB7829F00BCB0DB /* MKInfiniteScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CADDC351CB7829F00BCB0DB /* MKInfiniteScrollView.m */; };
+		6CADDC391CB79D8100BCB0DB /* MKInfiniteScrollViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CADDC381CB79D8100BCB0DB /* MKInfiniteScrollViewCell.m */; };
 		6CC184E21C92A16C009DA0DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC184E11C92A16C009DA0DC /* main.m */; };
 		6CC184E51C92A16C009DA0DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC184E41C92A16C009DA0DC /* AppDelegate.m */; };
 		6CC184E81C92A16C009DA0DC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC184E71C92A16C009DA0DC /* ViewController.m */; };
@@ -37,6 +39,10 @@
 		6C9959B41CAC206000CCAAA9 /* MKFileObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKFileObject.m; sourceTree = "<group>"; };
 		6C9959B61CAC22BB00CCAAA9 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		6C9959B71CAC22BB00CCAAA9 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		6CADDC341CB7829F00BCB0DB /* MKInfiniteScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKInfiniteScrollView.h; sourceTree = "<group>"; };
+		6CADDC351CB7829F00BCB0DB /* MKInfiniteScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKInfiniteScrollView.m; sourceTree = "<group>"; };
+		6CADDC371CB79D8100BCB0DB /* MKInfiniteScrollViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKInfiniteScrollViewCell.h; sourceTree = "<group>"; };
+		6CADDC381CB79D8100BCB0DB /* MKInfiniteScrollViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKInfiniteScrollViewCell.m; sourceTree = "<group>"; };
 		6CC184DD1C92A16C009DA0DC /* MKImageReview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MKImageReview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CC184E11C92A16C009DA0DC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6CC184E31C92A16C009DA0DC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -98,6 +104,7 @@
 		6C9959B21CAC1FCD00CCAAA9 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				6CADDC331CB7829700BCB0DB /* MKInfiniteScrollView */,
 				6C44AD181CB5662000C185B6 /* MKImagesReViewController */,
 				6C9959B61CAC22BB00CCAAA9 /* Utils.h */,
 				6C9959B71CAC22BB00CCAAA9 /* Utils.m */,
@@ -107,6 +114,17 @@
 				6C44AD1F1CB5674A00C185B6 /* UIUtils.m */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		6CADDC331CB7829700BCB0DB /* MKInfiniteScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				6CADDC341CB7829F00BCB0DB /* MKInfiniteScrollView.h */,
+				6CADDC351CB7829F00BCB0DB /* MKInfiniteScrollView.m */,
+				6CADDC371CB79D8100BCB0DB /* MKInfiniteScrollViewCell.h */,
+				6CADDC381CB79D8100BCB0DB /* MKInfiniteScrollViewCell.m */,
+			);
+			path = MKInfiniteScrollView;
 			sourceTree = "<group>";
 		};
 		6CC184D41C92A16C009DA0DC = {
@@ -298,10 +316,12 @@
 				6C9959B51CAC206000CCAAA9 /* MKFileObject.m in Sources */,
 				6C44AD1C1CB5664B00C185B6 /* MKImagesReViewController.m in Sources */,
 				6C44AD201CB5674A00C185B6 /* UIUtils.m in Sources */,
+				6CADDC361CB7829F00BCB0DB /* MKInfiniteScrollView.m in Sources */,
 				6C9959B01CAB738F00CCAAA9 /* MKCollectionViewCell.m in Sources */,
 				6CC184E81C92A16C009DA0DC /* ViewController.m in Sources */,
 				6CC184E51C92A16C009DA0DC /* AppDelegate.m in Sources */,
 				6CC184FB1C92C34F009DA0DC /* MKValidUtil.m in Sources */,
+				6CADDC391CB79D8100BCB0DB /* MKInfiniteScrollViewCell.m in Sources */,
 				6C9959B81CAC22BB00CCAAA9 /* Utils.m in Sources */,
 				6CC184E21C92A16C009DA0DC /* main.m in Sources */,
 			);

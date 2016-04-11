@@ -133,6 +133,8 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath: indexPath animated: YES];
     
+//    MKCollectionViewCell *cell = [contCollectionView cellForItemAtIndexPath:indexPath];
+    
     MKFileObject *fileObject = [domArray objectAtIndex: indexPath.row];
 
     switch (fileObject.fileType) {
