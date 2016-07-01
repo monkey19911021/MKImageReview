@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MKImagesReViewController : UIViewController <UIScrollViewDelegate>
+@interface MKImagesReViewController : UIViewController
 
 /**
  *  浏览图片集

@@ -111,7 +111,7 @@
     [super layoutSubviews];
     
     CGFloat contentOffsetX = self.contentOffset.x;
-    CGFloat contentOffsetY = self.contentOffset.y;
+//    CGFloat contentOffsetY = self.contentOffset.y;
     
     for(UIView *view in self.subviews){
         CATransform3D t1 = view.layer.transform; // Hack for avoid visual bug
@@ -129,7 +129,7 @@
         
         CGFloat offset = distanceFromCenterX;
         CGFloat translateX = (CGRectGetWidth(self.frame) * self.translateX) * offset / 100.;
-        CGFloat translateY = (CGRectGetWidth(self.frame) * self.translateY) * abs(offset) / 100.;
+        CGFloat translateY = (CGRectGetWidth(self.frame) * self.translateY) * fabs(offset) / 100.;
         CATransform3D t = CATransform3DMakeTranslation(translateX, translateY, 0.);
 
         view.layer.transform = CATransform3DRotate(t, DEGREES_TO_RADIANS(angle), self.rotationX, self.rotationY, self.rotationZ);
@@ -139,7 +139,11 @@
 - (NSUInteger)currentPage
 {
     CGFloat pageWidth = self.frame.size.width;
-    float fractionalPage = self.contentOffset.x / pageWidth;
+    if (pageWidth <= 0.0) {
+        return 0;
+    }
+
+    float fractionalPage = MAX(self.contentOffset.x, 0) / pageWidth;
     return lround(fractionalPage);
 }
 

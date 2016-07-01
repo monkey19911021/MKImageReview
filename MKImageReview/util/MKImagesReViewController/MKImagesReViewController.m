@@ -7,18 +7,28 @@
 //
 
 #import "MKImagesReViewController.h"
-#import "JT3DScrollView.h"
-#import "Utils.h"
-#import "UIUtils.h"
 
 
-@interface MKImagesReViewController ()
+const NSInteger ImageViewTag = 999;
+
+const NSInteger ImageScrollViewFirstTag = 1000;
+const NSInteger ImageScrollViewSecondTag = 1001;
+
+
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+@interface MKImagesReViewController ()<UIScrollViewDelegate>
 
 @end
 
 @implementation MKImagesReViewController
 {
-    JT3DScrollView *photoPreviewScrollView;
+    UIImageView *currentImageView;
+    NSInteger currentIndex;
+    
+    NSArray<NSString *> *_imagesPathArray;
+    
     void (^dismissPhotoSkimBlock)(NSInteger);
 }
 
@@ -45,114 +55,250 @@
             index:(NSInteger)index
 afterDismissBlock:(void (^)(NSInteger))dismissBlock
 {
-    if(photoPreviewScrollView == nil){
-        photoPreviewScrollView = [[JT3DScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        photoPreviewScrollView.effect = JT3DScrollViewEffectDepth;
-        photoPreviewScrollView.backgroundColor = [UIColor blackColor];
-        photoPreviewScrollView.delegate = self;
-    }
-    
-    photoPreviewScrollView.contentSize = CGSizeMake(SCREENWIDTH*imagesPathArray.count, SCREENHEIGHT);
     dismissPhotoSkimBlock = dismissBlock;
+    _imagesPathArray = [NSArray arrayWithArray:imagesPathArray];
     
-    for(int i=0; i<imagesPathArray.count; i++){
-        UIImageView *imageView = (UIImageView *)[photoPreviewScrollView viewWithTag:1000+i];
-        if(imageView == nil){
-            UIScrollView *imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(i*SCREENWIDTH, 0, SCREENWIDTH, SCREENHEIGHT)];
+    for(int i=0; i<2; i++){
+        UIScrollView *imageScrollView = [self.view viewWithTag:ImageScrollViewFirstTag+i];
+        if(imageScrollView == nil){
+            imageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
             imageScrollView.decelerationRate = 0;
+            imageScrollView.delegate = self;
+            imageScrollView.backgroundColor = [UIColor blackColor];
             imageScrollView.showsHorizontalScrollIndicator = NO;
             imageScrollView.showsVerticalScrollIndicator = NO;
-            [photoPreviewScrollView addSubview:imageScrollView];
+            imageScrollView.tag = ImageScrollViewFirstTag + i;
+            [self.view addSubview:imageScrollView];
             
-            imageView = [[UIImageView alloc] initWithFrame:imageScrollView.bounds];
-            imageView.tag = 1000 + i;
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageScrollView.bounds];
+            imageView.tag = ImageViewTag;
             imageView.backgroundColor = [UIColor clearColor];
-            imageView.image = [UIImage imageWithContentsOfFile: imagesPathArray[i]];
             imageView.contentMode = UIViewContentModeScaleAspectFit;
             imageView.userInteractionEnabled = YES;
+            [imageScrollView addSubview:imageView];
             
+            //单击消失
             UITapGestureRecognizer *dismissTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPhotoAlbum:)];
             dismissTapGesture.numberOfTapsRequired = 1;
             [imageView addGestureRecognizer:dismissTapGesture];
             
-            UITapGestureRecognizer *scaleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scaleImage:)];
+            //双击放大
+            UITapGestureRecognizer *scaleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScaleImage:)];
             scaleTapGesture.numberOfTapsRequired = 2;
             [imageView addGestureRecognizer:scaleTapGesture];
             
             [dismissTapGesture requireGestureRecognizerToFail:scaleTapGesture];
-            [imageScrollView addSubview:imageView];
             
+            
+            //左右横扫切换图片
+            UISwipeGestureRecognizer *rightSwipeGestur = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchImage:)];
+            rightSwipeGestur.direction = UISwipeGestureRecognizerDirectionRight;
+            [imageView addGestureRecognizer:rightSwipeGestur];
+            
+            UISwipeGestureRecognizer *leftSwipeGestur = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchImage:)];
+            leftSwipeGestur.direction = UISwipeGestureRecognizerDirectionLeft;
+            [imageView addGestureRecognizer:leftSwipeGestur];
+            
+            //捏合缩放
+            imageScrollView.maximumZoomScale = 2;
+            [imageScrollView.pinchGestureRecognizer addTarget:self action:@selector(scaleImage:)];
+            
+            //拖拉切换
+//            UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panSwitchImage:)];
+//            [imageView addGestureRecognizer:panGesture];
+//            [panGesture requireGestureRecognizerToFail: rightSwipeGestur];
+//            [panGesture requireGestureRecognizerToFail: leftSwipeGestur];
         }
     }
     
-    photoPreviewScrollView.contentOffset = CGPointMake(index*photoPreviewScrollView.frame.size.width, photoPreviewScrollView.contentOffset.y);
-    [self.view addSubview:photoPreviewScrollView];
+    if(currentImageView == nil){
+        currentImageView = [[self.view viewWithTag:ImageScrollViewSecondTag] viewWithTag:ImageViewTag];
+    }
+    UIImage *image = nil;
+    if(index < imagesPathArray.count){
+        image = [UIImage imageWithContentsOfFile: imagesPathArray[index]];
+    }
+    currentIndex = index;
+    currentImageView.image = image;
     
-    [[UIUtils getCurrentViewController] presentViewController:self animated:YES completion:NULL];
+    [[self getCurrentViewController] presentViewController:self animated:YES completion:NULL];
 }
 
-
+#pragma mark - 消失图片
 -(void)dismissPhotoAlbum:(UITapGestureRecognizer *)tapGesture
 {
     if(tapGesture.numberOfTapsRequired == 1){
-        NSInteger index = photoPreviewScrollView.contentOffset.x/photoPreviewScrollView.frame.size.width;
-        
         [self dismissViewControllerAnimated:YES completion:^{
             if(dismissPhotoSkimBlock != nil){
-                dismissPhotoSkimBlock(index);
+                dismissPhotoSkimBlock(currentIndex);
             }
         }];
     }
 }
 
 #pragma mark - 放大缩小图片
--(void)scaleImage:(UITapGestureRecognizer *)tapGesture
+-(void)tapScaleImage:(UITapGestureRecognizer *)tapGesture
 {
     if(tapGesture.numberOfTapsRequired == 2){
         UIImageView *imageView = (UIImageView *)tapGesture.view;
         UIScrollView *contView = (UIScrollView *)imageView.superview;
         
-        if(imageView.frame.size.width == SCREENWIDTH){
+        CGFloat imageWidth = imageView.frame.size.width;
+        CGFloat imageHeight= imageView.frame.size.height;
+        
+        if(imageWidth == SCREEN_WIDTH){
             [UIView animateWithDuration:0.3 animations:^{
-                imageView.frame = CGRectMake(0, 0, imageView.frame.size.width*2, imageView.frame.size.height*2);
-                contView.contentOffset = CGPointMake(imageView.frame.size.width/4.0f, imageView.frame.size.height/4.0f);
+                imageView.frame = CGRectMake(0, 0, imageWidth*2, imageHeight*2);
+                contView.contentOffset = CGPointMake(imageWidth/2, imageHeight/2);
             } completion:^(BOOL finished) {
                 contView.contentSize = imageView.frame.size;
             }];
         }else{
             [UIView animateWithDuration:0.3 animations:^{
-                imageView.frame = CGRectMake(0, 0, imageView.frame.size.width/2, imageView.frame.size.height/2);
+                imageView.frame = (CGRect){CGPointZero, contView.bounds.size};
                 contView.contentOffset = CGPointZero;
             } completion:^(BOOL finished) {
-                contView.contentSize = imageView.frame.size;
+                contView.contentSize = contView.bounds.size;
             }];
         }
     }
 }
 
-
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+#pragma mark - 捏合缩放图片
+-(void)scaleImage:(UIPinchGestureRecognizer *)pinchGesture
 {
-    if([scrollView isEqual:photoPreviewScrollView]){
-        for(UIScrollView *contView in [scrollView subviews]){
-            if([contView isKindOfClass:[UIScrollView class]] && contView.contentSize.width > SCREENWIDTH){
-                
-                for(UIImageView *imageView in [contView subviews]){
-                    if([imageView isKindOfClass:[UIImageView class]] && imageView.tag >= 1000){
-                        [UIView animateWithDuration:0.3 animations:^{
-                            imageView.frame = CGRectMake(0, 0, imageView.frame.size.width/2, imageView.frame.size.height/2);
-                            contView.contentOffset = CGPointZero;
-                        } completion:^(BOOL finished) {
-                            contView.contentSize = imageView.frame.size;
-                        }];
-                        break;
-                    }
-                }
+    UIScrollView *contView = (UIScrollView *)pinchGesture.view;
+    UIImageView *imageView = [contView viewWithTag:ImageViewTag];
+    
+    CGFloat scale = pinchGesture.scale;
+    CGFloat imageWidth = imageView.bounds.size.width;
+    CGFloat imageHeight= imageView.bounds.size.height;
+    
+    
+    CGFloat contWidth = contView.bounds.size.width;
+    CGFloat contHeight= contView.bounds.size.height;
+    
+    CGFloat scaleWidth = imageWidth * scale;
+    CGFloat scaleHeight= imageHeight * scale;
+    
+    if(scaleWidth >= SCREEN_WIDTH && scaleWidth <= SCREEN_WIDTH*2){
+        imageView.frame = CGRectMake(0, 0, scaleWidth, scaleHeight);
+        contView.contentOffset = CGPointMake((scaleWidth-contWidth)/2.0f, (scaleHeight-contHeight)/2.0f);
+        contView.contentSize = imageView.frame.size;
+        pinchGesture.scale = 1;
+    }
+}
+
+#pragma mark - 切换图片
+-(void)switchImage:(UISwipeGestureRecognizer *)swipeGesture
+{
+    BOOL isRight = YES;
+    if(swipeGesture.direction == UISwipeGestureRecognizerDirectionRight){
+        isRight = YES;
+    }else if(swipeGesture.direction == UISwipeGestureRecognizerDirectionLeft){
+        isRight = NO;
+    }
+    [self switchImageDirection:isRight];
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    CGFloat xOffset = scrollView.contentOffset.x;
+    if(xOffset < -80.0){
+        [self switchImageDirection:YES];
+    }else if(xOffset > (scrollView.contentSize.width - SCREEN_WIDTH + 80)){
+        [self switchImageDirection:NO];
+    }
+    
+}
+
+//#pragma mark - 拖拉切换图片
+//-(void)panSwitchImage:(UIPanGestureRecognizer *)panGesture
+//{
+//    NSLog(@"%@", NSStringFromCGPoint([panGesture translationInView:panGesture.view]));
+//}
+
+-(void)switchImageDirection:(BOOL)isRight
+{
+    UIImageView *imageView = currentImageView;
+    UIScrollView *contView = (UIScrollView *)imageView.superview;
+    
+    UIScrollView *nextContView = nil;
+    UIImageView *nextImageView = nil;
+    
+    if(contView.tag == ImageScrollViewFirstTag){
+        nextContView = [self.view viewWithTag:ImageScrollViewSecondTag];
+    }else{
+        nextContView = [self.view viewWithTag:ImageScrollViewFirstTag];
+    }
+    nextImageView = [nextContView viewWithTag:ImageViewTag];
+    
+    
+    NSInteger change = 0;
+    CGFloat xOffset = 0;
+    if(isRight){
+        //向右
+        change = -1;
+        currentIndex += change;
+        if(currentIndex == -1){
+            currentIndex = _imagesPathArray.count-1;
+        }
+        xOffset = contView.frame.size.width/2 * 3;
+    }else{
+        //向左
+        change = 1;
+        currentIndex += change;
+        if(currentIndex == _imagesPathArray.count){
+            currentIndex = 0;
+        }
+        xOffset = -contView.frame.size.width/2 * 3;
+    }
+    
+    nextImageView.image = [UIImage imageWithContentsOfFile: _imagesPathArray[currentIndex]];
+    
+    if(xOffset != 0){
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            contView.center = CGPointMake(xOffset, contView.center.y);
+            imageView.userInteractionEnabled = NO;
+            nextImageView.userInteractionEnabled = NO;
+        } completion:^(BOOL finished) {
+            [self.view bringSubviewToFront:nextContView];
+            //还原
+            contView.center = nextContView.center;
+            contView.contentOffset = CGPointZero;
+            contView.contentSize = contView.bounds.size;
+            imageView.frame = contView.bounds;
+            imageView.userInteractionEnabled = YES;
+            nextImageView.userInteractionEnabled = YES;
+        }];
+        
+        currentImageView = nextImageView;
+    }
+}
+
+-(UIViewController *)getCurrentViewController
+{
+    UIWindow *currentWindow = [[UIApplication sharedApplication] keyWindow];
+    if (currentWindow.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                currentWindow = tmpWin;
                 break;
-                
             }
         }
     }
+    
+    UIViewController *currentViewController = currentWindow.rootViewController;
+    UIViewController *presentViewController = currentViewController.presentedViewController;
+    if(presentViewController != nil){
+        return presentViewController;
+    }
+    return currentViewController;
 }
 
 @end

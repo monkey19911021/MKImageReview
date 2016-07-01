@@ -24,6 +24,7 @@
 		6CC184F81C92AFE3009DA0DC /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC184F71C92AFE3009DA0DC /* LocalAuthentication.framework */; };
 		6CC184FB1C92C34F009DA0DC /* MKValidUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC184FA1C92C34F009DA0DC /* MKValidUtil.m */; };
 		F441A6B1DE60F22CC9522976 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8926AF1F7042BADF8B745C99 /* libPods.a */; };
+		FBABA76F1D138E0B00E3CC49 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBABA76E1D138E0B00E3CC49 /* CoreSpotlight.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		6CC184FA1C92C34F009DA0DC /* MKValidUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKValidUtil.m; sourceTree = "<group>"; };
 		88BF2A5F2B92B329146303C3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8926AF1F7042BADF8B745C99 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBABA76E1D138E0B00E3CC49 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBABA76F1D138E0B00E3CC49 /* CoreSpotlight.framework in Frameworks */,
 				6CC184F81C92AFE3009DA0DC /* LocalAuthentication.framework in Frameworks */,
 				F441A6B1DE60F22CC9522976 /* libPods.a in Frameworks */,
 			);
@@ -176,6 +179,7 @@
 		EF70CFA66707BA4B9A75C485 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FBABA76E1D138E0B00E3CC49 /* CoreSpotlight.framework */,
 				8926AF1F7042BADF8B745C99 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -224,7 +228,7 @@
 				TargetAttributes = {
 					6CC184DC1C92A16C009DA0DC = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 9K57E9BZ8A;
+						DevelopmentTeam = DM7XAFH5UF;
 					};
 				};
 			};
@@ -434,7 +438,7 @@
 			baseConfigurationReference = 88BF2A5F2B92B329146303C3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 家豪 刘 (DS58ZX23Y7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MKImageReview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -449,7 +453,7 @@
 			baseConfigurationReference = 3750F27A5132B138B6F56DFB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 家豪 刘 (DS58ZX23Y7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MKImageReview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

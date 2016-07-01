@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <CoreSpotlight/CoreSpotlight.h>
 
 @interface AppDelegate ()
 
@@ -40,6 +41,31 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler
+{
+    NSString *identifier = userActivity.userInfo[CSSearchableItemActivityIdentifier];
+    
+    if([identifier isEqualToString:@"打开MKApple"]){
+        
+        UIViewController *rootViewCtrl = self.window.rootViewController;
+        
+        __block UIViewController *ctrl = [UIViewController new];
+        
+        [rootViewCtrl presentViewController:ctrl animated:YES completion:^{
+            
+            UIWebView *webView = [[UIWebView alloc] initWithFrame: ctrl.view.bounds];
+            [webView sizeToFit];
+            webView.scalesPageToFit = YES;
+            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://mkapple.cn"]]];
+            [ctrl.view addSubview:webView];
+            
+        }];
+        
+    }
+    
+    return YES;
 }
 
 @end
