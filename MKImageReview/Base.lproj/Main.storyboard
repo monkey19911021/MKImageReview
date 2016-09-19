@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ood-sp-a0u">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,53 +15,55 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yHD-7T-CEV">
-                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
-                                <color key="backgroundColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="486-nz-HZH">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="2RF-hU-qcI"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="jr7-gc-5le"/>
-                                </connections>
-                            </collectionView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9R4-4p-d62">
-                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2l0-yW-YcH">
                                 <constraints>
-                                    <constraint firstAttribute="height" priority="250" constant="50" id="4rS-vR-bbH"/>
+                                    <constraint firstAttribute="height" constant="60" id="Mpf-Xg-und"/>
+                                    <constraint firstAttribute="width" constant="44" id="YQi-lL-Iis"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <inset key="titleEdgeInsets" minX="-41" minY="30" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="-20" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="沙盒" image="doc">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="goSandBox:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wle-gQ-zde"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9R4-4p-d62" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8a5-uJ-myY"/>
-                            <constraint firstItem="yHD-7T-CEV" firstAttribute="top" secondItem="9R4-4p-d62" secondAttribute="bottom" id="E0q-ju-6k8"/>
-                            <constraint firstAttribute="trailing" secondItem="9R4-4p-d62" secondAttribute="trailing" id="OvS-JP-4d3"/>
-                            <constraint firstItem="yHD-7T-CEV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="70" id="Q4T-I0-6vQ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yHD-7T-CEV" secondAttribute="bottom" id="TqD-WM-CaE"/>
-                            <constraint firstAttribute="trailing" secondItem="yHD-7T-CEV" secondAttribute="trailing" id="m2G-1t-lAj"/>
-                            <constraint firstItem="yHD-7T-CEV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="u1k-pX-4HO"/>
-                            <constraint firstItem="9R4-4p-d62" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="yup-ly-h89"/>
+                            <constraint firstItem="2l0-yW-YcH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="D0S-BL-oWP"/>
+                            <constraint firstItem="2l0-yW-YcH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="PJd-j7-OXz"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="contCollectionView" destination="yHD-7T-CEV" id="ST7-SH-RND"/>
-                        <outlet property="filePathTextField" destination="9R4-4p-d62" id="TrR-fa-d2a"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="dOU-Wj-rd7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303" y="217"/>
+            <point key="canvasLocation" x="633" y="171"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ba1-j4-bed">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s0l-Yk-Bgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="ood-sp-a0u" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nH1-u0-fVK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="zyB-3S-VLy"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-110" y="172"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="doc" width="44" height="44"/>
+    </resources>
 </document>

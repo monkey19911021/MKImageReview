@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6C44AD1C1CB5664B00C185B6 /* MKImagesReViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C44AD1A1CB5664B00C185B6 /* MKImagesReViewController.m */; };
-		6C44AD1D1CB5664B00C185B6 /* MKImagesReViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C44AD1B1CB5664B00C185B6 /* MKImagesReViewController.xib */; };
 		6C44AD201CB5674A00C185B6 /* UIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C44AD1F1CB5674A00C185B6 /* UIUtils.m */; };
 		6C9959B01CAB738F00CCAAA9 /* MKCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9959AF1CAB738F00CCAAA9 /* MKCollectionViewCell.m */; };
 		6C9959B51CAC206000CCAAA9 /* MKFileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9959B41CAC206000CCAAA9 /* MKFileObject.m */; };
@@ -24,6 +23,7 @@
 		6CC184F81C92AFE3009DA0DC /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC184F71C92AFE3009DA0DC /* LocalAuthentication.framework */; };
 		6CC184FB1C92C34F009DA0DC /* MKValidUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC184FA1C92C34F009DA0DC /* MKValidUtil.m */; };
 		F441A6B1DE60F22CC9522976 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8926AF1F7042BADF8B745C99 /* libPods.a */; };
+		FB56A77E1D8FDC8700EE5F66 /* MKDocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56A77D1D8FDC8700EE5F66 /* MKDocViewController.m */; };
 		FBABA76F1D138E0B00E3CC49 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBABA76E1D138E0B00E3CC49 /* CoreSpotlight.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +31,6 @@
 		3750F27A5132B138B6F56DFB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6C44AD191CB5664B00C185B6 /* MKImagesReViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKImagesReViewController.h; sourceTree = "<group>"; };
 		6C44AD1A1CB5664B00C185B6 /* MKImagesReViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKImagesReViewController.m; sourceTree = "<group>"; };
-		6C44AD1B1CB5664B00C185B6 /* MKImagesReViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MKImagesReViewController.xib; sourceTree = "<group>"; };
 		6C44AD1E1CB5674A00C185B6 /* UIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIUtils.h; sourceTree = "<group>"; };
 		6C44AD1F1CB5674A00C185B6 /* UIUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIUtils.m; sourceTree = "<group>"; };
 		6C9959AE1CAB738F00CCAAA9 /* MKCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCollectionViewCell.h; sourceTree = "<group>"; };
@@ -59,6 +58,8 @@
 		6CC184FA1C92C34F009DA0DC /* MKValidUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKValidUtil.m; sourceTree = "<group>"; };
 		88BF2A5F2B92B329146303C3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8926AF1F7042BADF8B745C99 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB56A77C1D8FDC8700EE5F66 /* MKDocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDocViewController.h; sourceTree = "<group>"; };
+		FB56A77D1D8FDC8700EE5F66 /* MKDocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDocViewController.m; sourceTree = "<group>"; };
 		FBABA76E1D138E0B00E3CC49 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -81,7 +82,6 @@
 			children = (
 				6C44AD191CB5664B00C185B6 /* MKImagesReViewController.h */,
 				6C44AD1A1CB5664B00C185B6 /* MKImagesReViewController.m */,
-				6C44AD1B1CB5664B00C185B6 /* MKImagesReViewController.xib */,
 			);
 			path = MKImagesReViewController;
 			sourceTree = "<group>";
@@ -152,6 +152,7 @@
 		6CC184DF1C92A16C009DA0DC /* MKImageReview */ = {
 			isa = PBXGroup;
 			children = (
+				FB56A77B1D8FDC4800EE5F66 /* documentMgr */,
 				6C9959B21CAC1FCD00CCAAA9 /* util */,
 				6C9959B11CAC1F7D00CCAAA9 /* model */,
 				6C9959AD1CAB732B00CCAAA9 /* items */,
@@ -194,6 +195,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FB56A77B1D8FDC4800EE5F66 /* documentMgr */ = {
+			isa = PBXGroup;
+			children = (
+				FB56A77C1D8FDC8700EE5F66 /* MKDocViewController.h */,
+				FB56A77D1D8FDC8700EE5F66 /* MKDocViewController.m */,
+			);
+			path = documentMgr;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,7 +233,7 @@
 		6CC184D51C92A16C009DA0DC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = com.minstone;
 				TargetAttributes = {
 					6CC184DC1C92A16C009DA0DC = {
@@ -256,7 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CC184F01C92A16C009DA0DC /* LaunchScreen.storyboard in Resources */,
-				6C44AD1D1CB5664B00C185B6 /* MKImagesReViewController.xib in Resources */,
 				6CC184ED1C92A16C009DA0DC /* Assets.xcassets in Resources */,
 				6CC184EB1C92A16C009DA0DC /* Main.storyboard in Resources */,
 			);
@@ -322,6 +331,7 @@
 				6C44AD201CB5674A00C185B6 /* UIUtils.m in Sources */,
 				6CADDC361CB7829F00BCB0DB /* MKInfiniteScrollView.m in Sources */,
 				6C9959B01CAB738F00CCAAA9 /* MKCollectionViewCell.m in Sources */,
+				FB56A77E1D8FDC8700EE5F66 /* MKDocViewController.m in Sources */,
 				6CC184E81C92A16C009DA0DC /* ViewController.m in Sources */,
 				6CC184E51C92A16C009DA0DC /* AppDelegate.m in Sources */,
 				6CC184FB1C92C34F009DA0DC /* MKValidUtil.m in Sources */,
@@ -366,8 +376,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -409,8 +421,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
