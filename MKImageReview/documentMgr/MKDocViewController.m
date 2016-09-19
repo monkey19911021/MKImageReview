@@ -12,16 +12,27 @@
 #import "Utils.h"
 #import "MKFileObject.h"
 #import "MKImagesReViewController.h"
+#import "MKAddPic.h"
+#import "UIUtils.h"
 
-@interface MKDocViewController ()
+@interface MKDocViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
 
+
+typedef void(^VoidBlock)();
 @implementation MKDocViewController
 {
     NSMutableArray<MKFileObject *> *domArray;
     
     NSString *filePath;
+    
+    
+    UIImagePickerController *imagePickerCtrl;
+    UIImagePickerControllerSourceType imageSourceType;
+    
+    NSString *_filePath;
+    VoidBlock _successBlock;
 }
 static NSString * const reuseIdentifier = @"DocCell";
 static NSString * const BackString = @"返回";
@@ -38,6 +49,7 @@ static NSString * const BackString = @"返回";
     
     domArray = [NSMutableArray new];
     filePath = HomeFilePath;
+    [self setNavItem];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
@@ -45,22 +57,85 @@ static NSString * const BackString = @"返回";
                 forCellWithReuseIdentifier: reuseIdentifier];
     
     __weak typeof(self) weakSelf = self;
-    [[MKValidUtil new] validUserWithsuccess:^{
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
+//    [[MKValidUtil new] validUserWithsuccess:^{
+//        
+//        dispatch_sync(dispatch_get_main_queue(), ^{
             [weakSelf loadData];
-        });
-        
-    } failure:^{
-        UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"叫爸爸！" message:NULL preferredStyle:UIAlertControllerStyleAlert];
-        [self presentViewController:alertCtrl animated:YES completion:NULL];
-    }];
+//        });
+//
+//    } failure:^{
+//        UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"叫爸爸！" message:NULL preferredStyle:UIAlertControllerStyleAlert];
+//        [self presentViewController:alertCtrl animated:YES completion:NULL];
+//    }];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+-(void)setNavItem {
+    UIButton *addBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    [addBtn setImage: [UIImage imageNamed: @"add"] forState: UIControlStateNormal];
+    [addBtn addTarget: self action: @selector(addPic) forControlEvents: UIControlEventTouchUpInside];
+    [self.navigationItem setRightBarButtonItem: [[UIBarButtonItem alloc] initWithCustomView: addBtn]];
+}
+
+-(void)addPic {
+//    MKAddPic *addPic = [MKAddPic new];
+    __weak typeof(self) weakSelf = self;
+    [self addPicToPath: filePath successBlock:^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [weakSelf loadData];
+        });
+    }];
+}
+
+//----
+-(void)addPicToPath:(NSString *)filePath1 successBlock:(void (^)())successBlock{
+    imagePickerCtrl = [[UIImagePickerController alloc] init];
+    imagePickerCtrl.delegate = self;
+    _filePath = filePath1;
+    _successBlock = successBlock;
+    
+    UIAlertController *choseAlert = [UIAlertController alertControllerWithTitle: @"选择照片来源" message: nil preferredStyle: UIAlertControllerStyleActionSheet];
+    [choseAlert addAction: [UIAlertAction actionWithTitle: @"相机" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        imageSourceType = UIImagePickerControllerSourceTypeCamera;
+        [self showPhotoPicker];
+    }]];
+    [choseAlert addAction: [UIAlertAction actionWithTitle: @"相册" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        imageSourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self showPhotoPicker];
+    }]];
+    [choseAlert addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler: nil]];
+    [[UIUtils getCurrentViewController] presentViewController: choseAlert animated: YES completion:nil];
+}
+
+-(void)showPhotoPicker {
+    if (![UIImagePickerController isSourceTypeAvailable: imageSourceType]) {
+        return;
+    }
+    
+    imagePickerCtrl.sourceType = imageSourceType;
+    [[UIUtils getCurrentViewController] presentViewController: imagePickerCtrl animated:YES completion:nil];
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if(image != nil){
+        NSLog(@"%@", info);
+    }
+    
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+//        if(_successBlock){
+//            _successBlock();
+//        }
+    }];
+}
+//-----
 
 - (UICollectionViewFlowLayout *)collectionViewFlowLayout{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
