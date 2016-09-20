@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, MKFileType) {
 
 @property (strong, nonatomic) NSString   *filePath;
 
+@property (strong, nonatomic) NSData *objcData;
 
 
 /**

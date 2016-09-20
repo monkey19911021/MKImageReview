@@ -14,6 +14,7 @@
 #import "MKImagesReViewController.h"
 #import "MKAddPic.h"
 #import "UIUtils.h"
+#import "UIImageView+MKImageView.h"
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -160,6 +161,7 @@ static NSString * const BackString = @"返回";
         }else{
             if([IMAGES_TYPES containsObject: [path pathExtension]]){
                 object.image = [UIImage imageWithContentsOfFile: path];
+                object.objcData = [NSData dataWithContentsOfFile: path];
                 object.fileType = MKFileTypeImage;
             }
         }
@@ -194,6 +196,7 @@ static NSString * const BackString = @"返回";
     MKFileObject *fileObject = [domArray objectAtIndex: indexPath.row];
     cell.titleLabel.text = fileObject.name;
     cell.imageView.image = fileObject.image;
+    cell.imageView.imageData = fileObject.objcData;
     
     return cell;
 }

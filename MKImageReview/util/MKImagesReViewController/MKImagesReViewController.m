@@ -7,6 +7,7 @@
 //
 
 #import "MKImagesReViewController.h"
+#import "UIImageView+MKImageView.h"
 
 
 const NSInteger ImageViewTag = 999;
@@ -114,12 +115,20 @@ afterDismissBlock:(void (^)(NSInteger))dismissBlock
     if(currentImageView == nil){
         currentImageView = [[self.view viewWithTag:ImageScrollViewSecondTag] viewWithTag:ImageViewTag];
     }
-    UIImage *image = nil;
-    if(index < imagesPathArray.count){
-        image = [UIImage imageWithContentsOfFile: imagesPathArray[index]];
-    }
+    
     currentIndex = index;
-    currentImageView.image = image;
+    
+//    UIImage *image = nil;
+//    if(index < imagesPathArray.count){
+//        image = [UIImage imageWithContentsOfFile: imagesPathArray[index]];
+//    }
+//    currentImageView.image = image;
+    
+    NSData *imageData = nil;
+    if(index < imagesPathArray.count){
+        imageData = [NSData dataWithContentsOfFile: imagesPathArray[index]];
+    }
+    currentImageView.imageData = imageData;
     
     [[self getCurrentViewController] presentViewController:self animated:YES completion:NULL];
 }

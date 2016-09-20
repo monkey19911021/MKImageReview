@@ -25,6 +25,8 @@
 		F441A6B1DE60F22CC9522976 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8926AF1F7042BADF8B745C99 /* libPods.a */; };
 		FB56A77E1D8FDC8700EE5F66 /* MKDocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56A77D1D8FDC8700EE5F66 /* MKDocViewController.m */; };
 		FB56A7811D8FE96A00EE5F66 /* MKAddPic.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56A7801D8FE96A00EE5F66 /* MKAddPic.m */; };
+		FB56A7841D91052000EE5F66 /* UIImageView+MKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56A7831D91052000EE5F66 /* UIImageView+MKImageView.m */; };
+		FB56A7871D910AE700EE5F66 /* NSData+MKData.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56A7861D910AE700EE5F66 /* NSData+MKData.m */; };
 		FBABA76F1D138E0B00E3CC49 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBABA76E1D138E0B00E3CC49 /* CoreSpotlight.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,10 @@
 		FB56A77D1D8FDC8700EE5F66 /* MKDocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDocViewController.m; sourceTree = "<group>"; };
 		FB56A77F1D8FE96A00EE5F66 /* MKAddPic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAddPic.h; sourceTree = "<group>"; };
 		FB56A7801D8FE96A00EE5F66 /* MKAddPic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAddPic.m; sourceTree = "<group>"; };
+		FB56A7821D91052000EE5F66 /* UIImageView+MKImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MKImageView.h"; sourceTree = "<group>"; };
+		FB56A7831D91052000EE5F66 /* UIImageView+MKImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MKImageView.m"; sourceTree = "<group>"; };
+		FB56A7851D910AE700EE5F66 /* NSData+MKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MKData.h"; sourceTree = "<group>"; };
+		FB56A7861D910AE700EE5F66 /* NSData+MKData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MKData.m"; sourceTree = "<group>"; };
 		FBABA76E1D138E0B00E3CC49 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -85,6 +91,10 @@
 			children = (
 				6C44AD191CB5664B00C185B6 /* MKImagesReViewController.h */,
 				6C44AD1A1CB5664B00C185B6 /* MKImagesReViewController.m */,
+				FB56A7821D91052000EE5F66 /* UIImageView+MKImageView.h */,
+				FB56A7831D91052000EE5F66 /* UIImageView+MKImageView.m */,
+				FB56A7851D910AE700EE5F66 /* NSData+MKData.h */,
+				FB56A7861D910AE700EE5F66 /* NSData+MKData.m */,
 			);
 			path = MKImagesReViewController;
 			sourceTree = "<group>";
@@ -337,6 +347,7 @@
 				6C44AD201CB5674A00C185B6 /* UIUtils.m in Sources */,
 				6CADDC361CB7829F00BCB0DB /* MKInfiniteScrollView.m in Sources */,
 				6C9959B01CAB738F00CCAAA9 /* MKCollectionViewCell.m in Sources */,
+				FB56A7871D910AE700EE5F66 /* NSData+MKData.m in Sources */,
 				FB56A77E1D8FDC8700EE5F66 /* MKDocViewController.m in Sources */,
 				6CC184E81C92A16C009DA0DC /* ViewController.m in Sources */,
 				6CC184E51C92A16C009DA0DC /* AppDelegate.m in Sources */,
@@ -344,6 +355,7 @@
 				6CADDC391CB79D8100BCB0DB /* MKInfiniteScrollViewCell.m in Sources */,
 				6C9959B81CAC22BB00CCAAA9 /* Utils.m in Sources */,
 				6CC184E21C92A16C009DA0DC /* main.m in Sources */,
+				FB56A7841D91052000EE5F66 /* UIImageView+MKImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
