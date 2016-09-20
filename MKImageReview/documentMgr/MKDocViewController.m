@@ -125,9 +125,15 @@ static NSString * const BackString = @"返回";
 
 - (UICollectionViewFlowLayout *)collectionViewFlowLayout{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(65, 80);
+    
+    CGFloat widthToHeight = 13.0 / 16.0;
+    CGFloat width = SCREENWIDTH / 4.0 - 12;
+    CGFloat height = width / widthToHeight;
+    flowLayout.itemSize = CGSizeMake(width, height);
+    
+    flowLayout.minimumInteritemSpacing = 0;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    flowLayout.sectionInset = UIEdgeInsetsMake(8, 8, 8, 8);
     return flowLayout;
 }
 
@@ -206,7 +212,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath: indexPath animated: YES];
     
-    //    MKCollectionViewCell *cell = [contCollectionView cellForItemAtIndexPath:indexPath];
+//    MKCollectionViewCell *cell = (MKCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
     MKFileObject *fileObject = [domArray objectAtIndex: indexPath.row];
     
@@ -230,6 +236,7 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
             [[MKImagesReViewController new] showImages:filePaths
                                                  index:indexPath.row-1
                                      afterDismissBlock:^(NSInteger index) {
+                                         [self startAnimat:collectionView withIndexPath:indexPath];
                                          __block NSIndexPath *targetIndexPath = [NSIndexPath indexPathForRow:index
                                                                                                    inSection:indexPath.section];
                                          [self.collectionView scrollToItemAtIndexPath:targetIndexPath
@@ -247,6 +254,24 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
             
         default:
             break;
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    [self startAnimat:collectionView withIndexPath:indexPath];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    [self startAnimat:collectionView withIndexPath:indexPath];
+}
+
+-(void)startAnimat:(UICollectionView *)collectionView withIndexPath:(NSIndexPath *)indexPath {
+    MKCollectionViewCell *cell = (MKCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    MKFileObject *fileObject = [domArray objectAtIndex: indexPath.row];
+    if(fileObject.fileType == MKFileTypeImage){
+        if(cell.imageView.animationImages.count > 0){
+            [cell.imageView startAnimating];
+        }
     }
 }
 

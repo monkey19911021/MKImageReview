@@ -263,7 +263,8 @@ afterDismissBlock:(void (^)(NSInteger))dismissBlock
         xOffset = -contView.frame.size.width/2 * 3;
     }
     
-    nextImageView.image = [UIImage imageWithContentsOfFile: _imagesPathArray[currentIndex]];
+//    nextImageView.image = [UIImage imageWithContentsOfFile: _imagesPathArray[currentIndex]];
+    nextImageView.imageData = [NSData dataWithContentsOfFile: _imagesPathArray[currentIndex]];
     
     if(xOffset != 0){
         
