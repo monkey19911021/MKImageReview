@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface MKAddPic : NSObject
 
--(void)addPicToPath:(NSString *)filePath successBlock:(void(^)())successBlock;
+@property(weak, nonatomic) id imagePickerDelegate;
+
+-(void)addPicToPath:(NSString *)filePath;
 
 @end

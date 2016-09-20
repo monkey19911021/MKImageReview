@@ -14,6 +14,8 @@
 #import "MKImagesReViewController.h"
 #import "MKAddPic.h"
 #import "UIUtils.h"
+#import <Photos/Photos.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface MKDocViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -30,9 +32,6 @@ typedef void(^VoidBlock)();
     
     UIImagePickerController *imagePickerCtrl;
     UIImagePickerControllerSourceType imageSourceType;
-    
-    NSString *_filePath;
-    VoidBlock _successBlock;
 }
 static NSString * const reuseIdentifier = @"DocCell";
 static NSString * const BackString = @"返回";
@@ -82,60 +81,46 @@ static NSString * const BackString = @"返回";
 }
 
 -(void)addPic {
-//    MKAddPic *addPic = [MKAddPic new];
-    __weak typeof(self) weakSelf = self;
-    [self addPicToPath: filePath successBlock:^{
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [weakSelf loadData];
-        });
-    }];
+    MKAddPic *addPic = [MKAddPic new];
+    addPic.imagePickerDelegate = self;
+    [addPic addPicToPath: filePath];
 }
 
-//----
--(void)addPicToPath:(NSString *)filePath1 successBlock:(void (^)())successBlock{
-    imagePickerCtrl = [[UIImagePickerController alloc] init];
-    imagePickerCtrl.delegate = self;
-    _filePath = filePath1;
-    _successBlock = successBlock;
-    
-    UIAlertController *choseAlert = [UIAlertController alertControllerWithTitle: @"选择照片来源" message: nil preferredStyle: UIAlertControllerStyleActionSheet];
-    [choseAlert addAction: [UIAlertAction actionWithTitle: @"相机" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        imageSourceType = UIImagePickerControllerSourceTypeCamera;
-        [self showPhotoPicker];
-    }]];
-    [choseAlert addAction: [UIAlertAction actionWithTitle: @"相册" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        imageSourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self showPhotoPicker];
-    }]];
-    [choseAlert addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler: nil]];
-    [[UIUtils getCurrentViewController] presentViewController: choseAlert animated: YES completion:nil];
-}
-
--(void)showPhotoPicker {
-    if (![UIImagePickerController isSourceTypeAvailable: imageSourceType]) {
-        return;
-    }
-    
-    imagePickerCtrl.sourceType = imageSourceType;
-    [[UIUtils getCurrentViewController] presentViewController: imagePickerCtrl animated:YES completion:nil];
-}
-
-
+#pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    if(image != nil){
-        NSLog(@"%@", info);
+    if(picker.sourceType == UIImagePickerControllerSourceTypeCamera){
+        
+    }else{
+        //相册来源的图片使用 Photos 库写入文件
+        NSURL *picURL = [info objectForKey: UIImagePickerControllerReferenceURL];
+        
+        //获取资源
+        PHFetchResult<PHAsset *> *result = [PHAsset fetchAssetsWithALAssetURLs:@[picURL] options:nil];
+        PHAsset *asset = [result firstObject];
+        NSArray<PHAssetResource *> *resourceArray = [PHAssetResource assetResourcesForAsset: asset];
+        PHAssetResource *res = [resourceArray firstObject];
+        
+        //写入数据设置
+        PHAssetResourceRequestOptions *resOptions = [PHAssetResourceRequestOptions new];
+        resOptions.networkAccessAllowed = NO;
+        resOptions.progressHandler = ^(double progress){
+            NSLog(@"%@", @(progress));
+        };
+        
+        //写入文件
+        [[PHAssetResourceManager defaultManager] writeDataForAssetResource:res
+                                                                    toFile:[NSURL fileURLWithPath:[filePath stringByAppendingPathComponent: res.originalFilename] isDirectory:NO]
+                                                                   options: resOptions
+                                                         completionHandler:^(NSError * _Nullable error)
+         {
+             [self loadData];
+         }];
+        
+        [picker dismissViewControllerAnimated:YES completion: nil];
     }
-    
-    
-    [picker dismissViewControllerAnimated:YES completion:^{
-//        if(_successBlock){
-//            _successBlock();
-//        }
-    }];
 }
-//-----
+
 
 - (UICollectionViewFlowLayout *)collectionViewFlowLayout{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];

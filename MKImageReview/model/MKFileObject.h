@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define IMAGES_TYPES @[@"png", @"jpg", @"jpeg", @"JPG", @"gif"]
+#define IMAGES_TYPES @[@"png", @"PNG", @"jpg", @"jpeg", @"JPG", @"gif", @"GIF"]
 
 typedef NS_ENUM(NSInteger, MKFileType) {
     MKFileTypeDirectory = 0, //目录
