@@ -91,6 +91,10 @@ static NSString * const BackString = @"返回";
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     if(picker.sourceType == UIImagePickerControllerSourceTypeCamera){
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        NSData *imageData = UIImageJPEGRepresentation(image, 1);
+        [imageData writeToFile: [filePath stringByAppendingPathComponent: [NSString stringWithFormat:@"%@.jpg", @([[NSDate date] timeIntervalSince1970])]] atomically: YES];
+        [self loadData];
         
     }else{
         //相册来源的图片使用 Photos 库写入文件
@@ -117,9 +121,8 @@ static NSString * const BackString = @"返回";
          {
              [self loadData];
          }];
-        
-        [picker dismissViewControllerAnimated:YES completion: nil];
     }
+    [picker dismissViewControllerAnimated:YES completion: nil];
 }
 
 
