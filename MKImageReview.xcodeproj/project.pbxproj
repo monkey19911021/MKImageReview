@@ -28,6 +28,7 @@
 		FB56A7841D91052000EE5F66 /* UIImageView+MKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56A7831D91052000EE5F66 /* UIImageView+MKImageView.m */; };
 		FB56A7871D910AE700EE5F66 /* NSData+MKData.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56A7861D910AE700EE5F66 /* NSData+MKData.m */; };
 		FBABA76F1D138E0B00E3CC49 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBABA76E1D138E0B00E3CC49 /* CoreSpotlight.framework */; };
+		FBC539511D952D2D00FFCF00 /* PreviewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBC539501D952D2D00FFCF00 /* PreviewController.storyboard */; };
 		FBD6C6F61D94C7A0000498A2 /* MKUserPerferenceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD6C6F51D94C7A0000498A2 /* MKUserPerferenceTableViewController.m */; };
 		FBD6C6F81D94C7AB000498A2 /* MKUserPerferenceTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBD6C6F71D94C7AB000498A2 /* MKUserPerferenceTableViewController.storyboard */; };
 		FBD6C6FB1D94C9DB000498A2 /* MKUserPerference.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD6C6FA1D94C9DB000498A2 /* MKUserPerference.m */; };
@@ -75,6 +76,7 @@
 		FB56A7851D910AE700EE5F66 /* NSData+MKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MKData.h"; sourceTree = "<group>"; };
 		FB56A7861D910AE700EE5F66 /* NSData+MKData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MKData.m"; sourceTree = "<group>"; };
 		FBABA76E1D138E0B00E3CC49 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
+		FBC539501D952D2D00FFCF00 /* PreviewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PreviewController.storyboard; sourceTree = "<group>"; };
 		FBD6C6F41D94C7A0000498A2 /* MKUserPerferenceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKUserPerferenceTableViewController.h; sourceTree = "<group>"; };
 		FBD6C6F51D94C7A0000498A2 /* MKUserPerferenceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKUserPerferenceTableViewController.m; sourceTree = "<group>"; };
 		FBD6C6F71D94C7AB000498A2 /* MKUserPerferenceTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MKUserPerferenceTableViewController.storyboard; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			children = (
 				FB56A77C1D8FDC8700EE5F66 /* MKDocViewController.h */,
 				FB56A77D1D8FDC8700EE5F66 /* MKDocViewController.m */,
+				FBC539501D952D2D00FFCF00 /* PreviewController.storyboard */,
 				FB56A77F1D8FE96A00EE5F66 /* MKAddPic.h */,
 				FB56A7801D8FE96A00EE5F66 /* MKAddPic.m */,
 			);
@@ -313,6 +316,7 @@
 			files = (
 				6CC184F01C92A16C009DA0DC /* LaunchScreen.storyboard in Resources */,
 				6CC184ED1C92A16C009DA0DC /* Assets.xcassets in Resources */,
+				FBC539511D952D2D00FFCF00 /* PreviewController.storyboard in Resources */,
 				FBD6C6F81D94C7AB000498A2 /* MKUserPerferenceTableViewController.storyboard in Resources */,
 				6CC184EB1C92A16C009DA0DC /* Main.storyboard in Resources */,
 			);
