@@ -89,7 +89,7 @@ static NSString * const BackString = @"返回";
 -(void)addPic {
     MKAddPic *addPic = [MKAddPic new];
     addPic.imagePickerDelegate = self;
-    [addPic addPicToPath: filePath];
+    [addPic addPic];
 }
 
 #pragma mark - UIImagePickerControllerDelegate

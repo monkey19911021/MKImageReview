@@ -32,6 +32,7 @@
 		FBD6C6F81D94C7AB000498A2 /* MKUserPerferenceTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBD6C6F71D94C7AB000498A2 /* MKUserPerferenceTableViewController.storyboard */; };
 		FBD6C6FB1D94C9DB000498A2 /* MKUserPerference.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD6C6FA1D94C9DB000498A2 /* MKUserPerference.m */; };
 		FBD6C6FE1D94CA5B000498A2 /* NSObject+MKInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD6C6FD1D94CA5B000498A2 /* NSObject+MKInstance.m */; };
+		FBD6C7011D94DFEE000498A2 /* MKApplicationShortcutsConfigure.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD6C7001D94DFEE000498A2 /* MKApplicationShortcutsConfigure.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,8 @@
 		FBD6C6FA1D94C9DB000498A2 /* MKUserPerference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKUserPerference.m; sourceTree = "<group>"; };
 		FBD6C6FC1D94CA5B000498A2 /* NSObject+MKInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MKInstance.h"; sourceTree = "<group>"; };
 		FBD6C6FD1D94CA5B000498A2 /* NSObject+MKInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MKInstance.m"; sourceTree = "<group>"; };
+		FBD6C6FF1D94DFEE000498A2 /* MKApplicationShortcutsConfigure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKApplicationShortcutsConfigure.h; sourceTree = "<group>"; };
+		FBD6C7001D94DFEE000498A2 /* MKApplicationShortcutsConfigure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKApplicationShortcutsConfigure.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 				6C44AD1F1CB5674A00C185B6 /* UIUtils.m */,
 				FBD6C6FC1D94CA5B000498A2 /* NSObject+MKInstance.h */,
 				FBD6C6FD1D94CA5B000498A2 /* NSObject+MKInstance.m */,
+				FBD6C6FF1D94DFEE000498A2 /* MKApplicationShortcutsConfigure.h */,
+				FBD6C7001D94DFEE000498A2 /* MKApplicationShortcutsConfigure.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				6C9959B81CAC22BB00CCAAA9 /* Utils.m in Sources */,
 				FBD6C6F61D94C7A0000498A2 /* MKUserPerferenceTableViewController.m in Sources */,
 				6CC184E21C92A16C009DA0DC /* main.m in Sources */,
+				FBD6C7011D94DFEE000498A2 /* MKApplicationShortcutsConfigure.m in Sources */,
 				FB56A7841D91052000EE5F66 /* UIImageView+MKImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

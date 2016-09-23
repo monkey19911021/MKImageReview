@@ -58,7 +58,6 @@ static const char MKImageDataKey = '\0';
         return imageArray;
     }
     
-    
     for(int i=0; i<frameCount; i++){
         CGImageRef imageRef = CGImageSourceCreateImageAtIndex(imageSoucrceRef, i, options);
         if(imageRef == nil){

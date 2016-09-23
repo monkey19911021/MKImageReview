@@ -7,11 +7,13 @@
 //
 
 #import "MKUserPerference.h"
+#import "MKValidUtil.h"
+#import "UIUtils.h"
 
 NSString *const SecretModelKey = @"SecretModelKey";
 @implementation MKUserPerference
 {
-    NSUserDefaults *userDefaults;
+    __weak NSUserDefaults *userDefaults;
 }
 
 -(instancetype)init {
@@ -22,8 +24,27 @@ NSString *const SecretModelKey = @"SecretModelKey";
 }
 
 -(void)setIsSecrectModel:(BOOL)isSecrectModel {
-    [userDefaults setObject: @(isSecrectModel) forKey: SecretModelKey];
-    [userDefaults synchronize];
+    if(!isSecrectModel){
+        
+        [[MKValidUtil new] validUserWithsuccess:^{
+            
+            
+            [userDefaults setObject: @(NO) forKey: SecretModelKey];
+            [userDefaults synchronize];
+            
+        } failure:^{
+            UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"关闭隐私模式失败" message: @"将返回上一层页面" preferredStyle:UIAlertControllerStyleAlert];
+            [alertCtrl addAction: [UIAlertAction actionWithTitle: @"确定" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [UIUtils backToLastViewController];
+            }]];
+            
+            [[UIUtils getCurrentViewController] presentViewController:alertCtrl animated:YES completion: nil];
+        }];
+        
+    }else{
+        [userDefaults setObject: @(YES) forKey: SecretModelKey];
+        [userDefaults synchronize];
+    }
 }
 
 -(BOOL)isSecrectModel {

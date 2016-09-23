@@ -25,4 +25,10 @@
  */
 +(UIViewController *)getCurrentViewController;
 
+
+/**
+ 返回上一视图控制器
+ */
++(void)backToLastViewController;
+
 @end

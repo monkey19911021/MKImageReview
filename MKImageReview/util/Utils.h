@@ -20,6 +20,8 @@
 
 #define HomeFilePath ([NSString stringWithFormat:@"%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]])
 
+UIKIT_EXTERN NSString *const SnapshootNotification;
+
 @interface Utils : NSObject
 
 +(Utils *)sharedConfig;

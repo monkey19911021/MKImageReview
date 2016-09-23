@@ -40,4 +40,20 @@
     return currentViewController;
 }
 
++(void)backToLastViewController {
+    UIViewController *ctrl = [UIUtils getCurrentViewController];
+    if([ctrl isKindOfClass: [UINavigationController class]]){
+        //导航视图
+        [(UINavigationController *)ctrl popViewControllerAnimated: YES];
+    }else if(ctrl.presentingViewController){
+        //模态视图
+        [ctrl dismissViewControllerAnimated: YES completion: nil];
+    }else if(([ctrl isKindOfClass: [UITabBarController class]])){
+        //页签视图
+        UINavigationController *navCtrl = (UINavigationController *)[(UITabBarController *)ctrl selectedViewController];
+        [navCtrl popViewControllerAnimated: YES];
+    }
+    
+}
+
 @end

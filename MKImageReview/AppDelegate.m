@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "MKApplicationShortcutsConfigure.h"
+#import "Utils.h"
 #import <CoreSpotlight/CoreSpotlight.h>
 
 @interface AppDelegate ()
@@ -18,6 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [MKApplicationShortcutsConfigure configure];
     return YES;
 }
 
@@ -41,6 +45,24 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    
+    if(shortcutItem){
+        NSString *ID = [NSString stringWithFormat: @"%@", shortcutItem.userInfo[@"scheme"]];
+        if([ID isEqualToString: @"mkapple://snapshot"]){
+            //延时处理
+            dispatch_time_t start = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC));
+            dispatch_after(start, dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName: SnapshootNotification object: nil];
+            });
+        }
+    }
+    
+    if(completionHandler){
+        completionHandler(YES);
+    }
 }
 
 -(BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler

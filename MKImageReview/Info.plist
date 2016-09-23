@@ -2,6 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>cn.mkapple.snapshot</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>拍照</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>照片存入沙盒</string>
+			<!-- <key>UIApplicationShortcutItemIconFile</key>
+			<string>config</string> -->
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeCapturePhoto</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>scheme</key>
+				<string>mkapple://snapshot</string>
+			</dict>
+		</dict>
+	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>拍个照</string>
 	<key>NSPhotoLibraryUsageDescription</key>

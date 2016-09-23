@@ -13,6 +13,8 @@
 
 @property(weak, nonatomic) id imagePickerDelegate;
 
--(void)addPicToPath:(NSString *)filePath;
+-(void)addPic;
+
+-(void)snapshoot;
 
 @end

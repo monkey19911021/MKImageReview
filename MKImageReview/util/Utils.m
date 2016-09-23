@@ -9,6 +9,8 @@
 #import "Utils.h"
 #import <CommonCrypto/CommonDigest.h>
 
+NSString *const SnapshootNotification = @"SnapshootNotification";
+
 @implementation Utils{
     UIViewController *tempViewContyroller;
 }

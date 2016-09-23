@@ -30,7 +30,7 @@
     imagePickerCtrl.delegate = imagePickerDelegate;
 }
 
--(void)addPicToPath:(NSString *)filePath{
+-(void)addPic{
     UIAlertController *choseAlert = [UIAlertController alertControllerWithTitle: @"选择照片来源" message: nil preferredStyle: UIAlertControllerStyleActionSheet];
     [choseAlert addAction: [UIAlertAction actionWithTitle: @"相机" style: UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         imageSourceType = UIImagePickerControllerSourceTypeCamera;
@@ -42,6 +42,11 @@
     }]];
     [choseAlert addAction: [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler: nil]];
     [[UIUtils getCurrentViewController] presentViewController: choseAlert animated: YES completion:nil];
+}
+
+-(void)snapshoot {
+    imageSourceType = UIImagePickerControllerSourceTypeCamera;
+    [self showPhotoPicker];
 }
 
 -(void)showPhotoPicker {
