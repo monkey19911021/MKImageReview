@@ -15,6 +15,7 @@
 #import "MKAddPic.h"
 #import "UIUtils.h"
 #import "UIImageView+MKImageView.h"
+#import "MKUserPerference.h"
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -56,17 +57,21 @@ static NSString * const BackString = @"返回";
     [self.collectionView registerClass:[MKCollectionViewCell class]
                 forCellWithReuseIdentifier: reuseIdentifier];
     
-    __weak typeof(self) weakSelf = self;
-//    [[MKValidUtil new] validUserWithsuccess:^{
-//        
-//        dispatch_sync(dispatch_get_main_queue(), ^{
-            [weakSelf loadData];
-//        });
-//
-//    } failure:^{
-//        UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"叫爸爸！" message:NULL preferredStyle:UIAlertControllerStyleAlert];
-//        [self presentViewController:alertCtrl animated:YES completion:NULL];
-//    }];
+    if([MKUserPerference instance].isSecrectModel){
+        __weak typeof(self) weakSelf = self;
+        [[MKValidUtil new] validUserWithsuccess:^{
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [weakSelf loadData];
+            });
+            
+        } failure:^{
+            UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"叫爸爸！" message:NULL preferredStyle:UIAlertControllerStyleAlert];
+            [self presentViewController:alertCtrl animated:YES completion:NULL];
+        }];
+    }else{
+        [self loadData];
+    }
     
 }
 

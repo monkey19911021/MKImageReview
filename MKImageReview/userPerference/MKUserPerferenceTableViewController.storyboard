@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EGp-D2-oeg">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User Perference Table View Controller-->
+        <scene sceneID="aAb-tm-W6J">
+            <objects>
+                <tableViewController id="EGp-D2-oeg" customClass="MKUserPerferenceTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1hi-ZO-6F2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="2eP-0Z-Vrt">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="M0W-4S-w7p">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M0W-4S-w7p" id="664-G3-NRO">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否开启隐私模式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZH-Yc-Zzp">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="139" id="k4T-3w-IyU"/>
+                                                        <constraint firstAttribute="height" constant="21" id="lZl-YD-Vrg"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g81-Wv-C54">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="CJa-mN-awD"/>
+                                                        <constraint firstAttribute="width" constant="49" id="NZ4-oR-nZe"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="switchSecrectMode:" destination="EGp-D2-oeg" eventType="valueChanged" id="7qh-m6-Nna"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bZH-Yc-Zzp" firstAttribute="leading" secondItem="664-G3-NRO" secondAttribute="leading" constant="8" id="2mw-eK-MgR"/>
+                                                <constraint firstAttribute="trailing" secondItem="g81-Wv-C54" secondAttribute="trailing" constant="8" id="aaR-PW-CYN"/>
+                                                <constraint firstItem="g81-Wv-C54" firstAttribute="centerY" secondItem="664-G3-NRO" secondAttribute="centerY" id="fVU-g4-PQv"/>
+                                                <constraint firstItem="bZH-Yc-Zzp" firstAttribute="centerY" secondItem="664-G3-NRO" secondAttribute="centerY" id="y1s-JZ-gfx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="EGp-D2-oeg" id="aNt-9u-LyZ"/>
+                            <outlet property="delegate" destination="EGp-D2-oeg" id="2S3-8p-buy"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="userPerferenceSwitch" destination="g81-Wv-C54" id="p0r-yC-kYD"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mgX-mv-RgP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="20" y="23"/>
+        </scene>
+    </scenes>
+</document>

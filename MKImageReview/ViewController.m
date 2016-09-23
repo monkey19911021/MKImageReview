@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "MKDocViewController.h"
+#import "MKUserPerferenceTableViewController.h"
 
 @interface ViewController ()
 
@@ -20,6 +21,10 @@
 }
 - (IBAction)goSandBox:(id)sender {
     [self.navigationController pushViewController: [MKDocViewController new] animated: YES];
+}
+
+- (IBAction)config:(id)sender {
+    [self.navigationController pushViewController: [[UIStoryboard storyboardWithName: NSStringFromClass([MKUserPerferenceTableViewController class]) bundle: nil] instantiateInitialViewController] animated: YES];
 }
 
 - (void)didReceiveMemoryWarning {

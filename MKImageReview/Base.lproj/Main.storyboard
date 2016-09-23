@@ -40,7 +40,14 @@
                             <constraint firstItem="2l0-yW-YcH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="PJd-j7-OXz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dOU-Wj-rd7"/>
+                    <navigationItem key="navigationItem" id="dOU-Wj-rd7">
+                        <barButtonItem key="rightBarButtonItem" image="config" id="B39-Cp-J0Z">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="config:" destination="BYZ-38-t0r" id="xmQ-uM-h4d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +56,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Ba1-j4-bed">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s0l-Yk-Bgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="ood-sp-a0u" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nH1-u0-fVK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -59,11 +65,13 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="zyB-3S-VLy"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s0l-Yk-Bgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-110" y="172"/>
         </scene>
     </scenes>
     <resources>
+        <image name="config" width="30" height="30"/>
         <image name="doc" width="44" height="44"/>
     </resources>
 </document>
