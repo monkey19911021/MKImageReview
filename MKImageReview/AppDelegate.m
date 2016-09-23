@@ -21,7 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [MKApplicationShortcutsConfigure configure];
+    //动态设置程序快捷方式
+//    [MKApplicationShortcutsConfigure configure];
     return YES;
 }
 
@@ -47,6 +48,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+//程序快捷方式
 -(void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
     
     if(shortcutItem){

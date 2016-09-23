@@ -31,4 +31,9 @@
  */
 +(void)backToLastViewController;
 
++(UIAlertController *)showAlertWithTitle:(NSString *)title
+                  message:(NSString *)message
+                  actions:(NSArray<UIAlertAction *> *)actions
+               textFields:(NSArray<UITextField *> *)textFields;
+
 @end

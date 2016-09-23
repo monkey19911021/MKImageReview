@@ -56,4 +56,26 @@
     
 }
 
++(UIAlertController *)showAlertWithTitle:(NSString *)title
+                  message:(NSString *)message
+                  actions:(NSArray<UIAlertAction *> *)actions
+               textFields:(NSArray<UITextField *> *)textFields{
+    
+    UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle: title message: message preferredStyle: UIAlertControllerStyleAlert];
+    for(UIAlertAction *action in actions){
+        [alertCtrl addAction: action];
+    }
+    for(__weak UITextField *textField in textFields){
+        [alertCtrl addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull _textField) {
+            _textField.text = textField.text;
+            _textField.textColor = textField.textColor;
+            _textField.leftView = textField.leftView;
+            _textField.leftViewMode = textField.leftViewMode;
+            _textField.placeholder = textField.placeholder;
+        }];
+    }
+    [[UIUtils getCurrentViewController] presentViewController: alertCtrl animated:YES completion: nil];
+    return alertCtrl;
+}
+
 @end

@@ -23,17 +23,18 @@
 
 @end
 
-
-typedef void(^VoidBlock)();
 @implementation MKDocViewController
 {
     NSMutableArray<MKFileObject *> *domArray;
     
     NSString *filePath;
     
+    MKAddPic *addPic;
     
-    UIImagePickerController *imagePickerCtrl;
-    UIImagePickerControllerSourceType imageSourceType;
+    NSArray<UIAlertAction *> *createDirectoryActions;
+    NSArray<UITextField *> *createDirectoryTextFields;
+    UIAlertController *createDirectoryAlertCtrl;
+    
 }
 static NSString * const reuseIdentifier = @"DocCell";
 static NSString * const BackString = @"返回";
@@ -87,9 +88,54 @@ static NSString * const BackString = @"返回";
 }
 
 -(void)addPic {
-    MKAddPic *addPic = [MKAddPic new];
-    addPic.imagePickerDelegate = self;
-    [addPic addPic];
+    //在顶层只能创建文件夹
+    if([filePath isEqualToString: HomeFilePath]) {
+        
+        if(!createDirectoryActions){
+            __weak typeof(self) weakSelf = self;
+            UIAlertAction *actionConfirm = [UIAlertAction actionWithTitle: @"确定" style: UIAlertActionStyleDefault handler: ^(UIAlertAction * _Nonnull action) {
+                
+                NSString *name = createDirectoryAlertCtrl.textFields[0].text;
+                if(name.length > 0){
+                    NSFileManager *fileMgr = [NSFileManager defaultManager];
+                    NSString *createdFielPath = [filePath stringByAppendingPathComponent: name];
+                    if(![fileMgr fileExistsAtPath: createdFielPath]){
+                        [fileMgr createDirectoryAtPath: createdFielPath withIntermediateDirectories: YES attributes: nil error:nil];
+                        [weakSelf loadData];
+                    }
+                }
+                
+            }];
+            UIAlertAction *actionCancel = [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler: nil];
+            createDirectoryActions = @[actionConfirm, actionCancel];
+        }
+        
+        if(!createDirectoryTextFields){
+            
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 50, 22)];
+            titleLabel.text = @"命名:";
+            
+            UITextField *textField = [[UITextField alloc] initWithFrame: CGRectZero];
+            textField.placeholder = @"填写文件夹的名字";
+            textField.leftView = titleLabel;
+            textField.leftViewMode = UITextFieldViewModeAlways;
+            
+            createDirectoryTextFields = @[textField];
+        }
+        
+        if(createDirectoryAlertCtrl){
+            [self presentViewController: createDirectoryAlertCtrl animated:YES completion:nil];
+        }else{
+            createDirectoryAlertCtrl = [UIUtils showAlertWithTitle: @"填写创建的文件夹的名字" message: nil actions: createDirectoryActions textFields: createDirectoryTextFields];
+        }
+        
+    }else {
+        if(!addPic){
+            addPic = [MKAddPic new];
+        }
+        addPic.imagePickerDelegate = self;
+        [addPic addPic];
+    }
 }
 
 #pragma mark - UIImagePickerControllerDelegate
