@@ -10,6 +10,6 @@
 
 @interface UIImageView (MKImageView)
 
-@property(nonatomic, strong) NSData *imageData;
+-(void)setImageData:(NSData *)imageData;
 
 @end

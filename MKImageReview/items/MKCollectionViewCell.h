@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MKFileObject.h"
 
 @interface MKCollectionViewCell : UICollectionViewCell
 
@@ -15,5 +16,11 @@
 @property(strong, nonatomic, readonly)UIImageView *imageView;
 
 @property(assign, nonatomic)BOOL isSelected;
+
+@property(weak, nonatomic) MKFileObject *fileObject;
+
+@property(weak, nonatomic) NSIndexPath *indexPath;
+
+@property (weak, nonatomic) UICollectionViewController *previewingRegister;
 
 @end

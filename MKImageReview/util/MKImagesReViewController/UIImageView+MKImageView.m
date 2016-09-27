@@ -14,30 +14,20 @@
 
 @implementation UIImageView (MKImageView)
 
-static const char MKImageDataKey = '\0';
 -(void)setImageData:(NSData *)imageData {
-    if (imageData != self.imageData) {
-        
-        self.animationImages = nil;
-        if([imageData getImageDataFormat] == GIF){
-            if([self isAnimating]){
-                [self stopAnimating];
-            }
-            NSArray *images= [self getGIFImageArrayWithData: imageData];
-            if(images.count > 0){
-                self.animationImages = images;
-                self.animationRepeatCount = 0;
-                [self startAnimating];
-            }
-        }else if(imageData){
-            self.image = [UIImage imageWithData: imageData];
+    self.animationImages = nil;
+    if([imageData getImageDataFormat] == GIF){
+        if([self isAnimating]){
+            [self stopAnimating];
         }
-        
-        
-        [self willChangeValueForKey:@"seniorImage"]; // KVO
-        objc_setAssociatedObject(self, &MKImageDataKey,
-                                 imageData, OBJC_ASSOCIATION_ASSIGN);
-        [self didChangeValueForKey:@"seniorImage"]; // KVO
+        NSArray *images= [self getGIFImageArrayWithData: imageData];
+        if(images.count > 0){
+            self.animationImages = images;
+            self.animationRepeatCount = 0;
+            [self startAnimating];
+        }
+    }else if(self.image == nil && imageData.length > 0){
+        self.image = [UIImage imageWithData: imageData];
     }
 }
 
@@ -79,10 +69,6 @@ static const char MKImageDataKey = '\0';
     
     self.animationDuration = gifDuration;
     return imageArray;
-}
-
--(NSData *)imageData {
-    return objc_getAssociatedObject(self, &MKImageDataKey);
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {

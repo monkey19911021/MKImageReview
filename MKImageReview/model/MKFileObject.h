@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define IMAGES_TYPES @[@"png", @"PNG", @"jpg", @"jpeg", @"JPG", @"gif", @"GIF"]
-
 typedef NS_ENUM(NSInteger, MKFileType) {
     MKFileTypeDirectory = 0, //目录
     
@@ -21,16 +19,17 @@ typedef NS_ENUM(NSInteger, MKFileType) {
 
 @interface MKFileObject : NSObject
 
-@property (strong, nonatomic) NSString   *name;
+-(instancetype)initWithFilePath:(NSString *)filePath;
+
+//文件路径
+@property (strong, nonatomic) NSString *filePath;
+
+@property (strong, nonatomic) NSString *name;
 
 //图标
-@property (strong, nonatomic) UIImage    *image;
+@property (strong, nonatomic) UIImage *image;
 
 @property (assign, nonatomic) MKFileType fileType;
-
-@property (strong, nonatomic) NSString   *filePath;
-
-@property (strong, nonatomic) NSData *objcData;
 
 
 /**

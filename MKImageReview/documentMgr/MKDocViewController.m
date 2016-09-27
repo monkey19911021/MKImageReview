@@ -16,10 +16,11 @@
 #import "UIUtils.h"
 #import "UIImageView+MKImageView.h"
 #import "MKUserPerference.h"
+#import "MKPreviewingViewController.h"
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface MKDocViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIViewControllerPreviewingDelegate>
+@interface MKDocViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
 
@@ -31,8 +32,6 @@
     
     MKAddPic *addPic;
     
-    NSArray<UIAlertAction *> *createDirectoryActions;
-    NSArray<UITextField *> *createDirectoryTextFields;
     UIAlertController *createDirectoryAlertCtrl;
     
 }
@@ -73,29 +72,10 @@ static NSString * const BackString = @"返回";
     }else{
         [self loadData];
     }
-    
-    
-    [self registerForPreviewingWithDelegate:(id)self sourceView: self.collectionView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-
--(UIViewController *)previewingContext:(id<UIViewControllerPreviewing>)previewingContext viewControllerForLocation:(CGPoint)location {
-    if([self.presentedViewController isKindOfClass: [MKImagesReViewController class]]){
-        return nil;
-    }else{
-        UIViewController *ctrl = [[UIStoryboard storyboardWithName: @"PreviewController" bundle: nil] instantiateInitialViewController];
-        UIImageView *imageView = [ctrl.view viewWithTag: 101];
-        imageView.image = [UIImage imageNamed: @"config"];
-        
-        return ctrl;
-    }
-}
-
--(void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
-    
 }
 
 -(void)setNavItem {
@@ -120,7 +100,14 @@ static NSString * const BackString = @"返回";
 }
 
 -(void)createDirectory {
-    if(!createDirectoryActions){
+    if(createDirectoryAlertCtrl){
+        [self presentViewController: createDirectoryAlertCtrl animated:YES completion:nil];
+    }else{
+        
+        NSArray<UIAlertAction *> *createDirectoryActions;
+        NSArray<UITextField *> *createDirectoryTextFields;
+        
+        //actions
         __weak typeof(self) weakSelf = self;
         UIAlertAction *actionConfirm = [UIAlertAction actionWithTitle: @"确定" style: UIAlertActionStyleDefault handler: ^(UIAlertAction * _Nonnull action) {
             
@@ -137,10 +124,8 @@ static NSString * const BackString = @"返回";
         }];
         UIAlertAction *actionCancel = [UIAlertAction actionWithTitle: @"取消" style: UIAlertActionStyleCancel handler: nil];
         createDirectoryActions = @[actionConfirm, actionCancel];
-    }
-    
-    if(!createDirectoryTextFields){
         
+        //textFields
         UILabel *titleLabel = [[UILabel alloc] initWithFrame: CGRectMake(0, 0, 50, 22)];
         titleLabel.text = @"命名:";
         
@@ -150,11 +135,7 @@ static NSString * const BackString = @"返回";
         textField.leftViewMode = UITextFieldViewModeAlways;
         
         createDirectoryTextFields = @[textField];
-    }
-    
-    if(createDirectoryAlertCtrl){
-        [self presentViewController: createDirectoryAlertCtrl animated:YES completion:nil];
-    }else{
+        
         createDirectoryAlertCtrl = [UIUtils showAlertWithTitle: @"填写创建的文件夹的名字" message: nil actions: createDirectoryActions textFields: createDirectoryTextFields];
     }
 }
@@ -228,25 +209,7 @@ static NSString * const BackString = @"返回";
     NSArray<NSString *> *subPathsArray = [fileManager contentsOfDirectoryAtPath: filePath
                                                                           error: NULL];
     for(NSString *str in subPathsArray){
-        MKFileObject *object = [MKFileObject new];
-        object.name = str;
-        object.filePath = [NSString stringWithFormat:@"%@/%@", filePath, str];
-        NSString *path = object.filePath;
-        BOOL isDirectory = true;
-        [fileManager fileExistsAtPath:path isDirectory: &isDirectory];
-        object.image = [UIImage imageNamed: @"fielIcon"];
-        
-        if(isDirectory){
-            object.image = [UIImage imageNamed: @"dirIcon"];
-            object.fileType = MKFileTypeDirectory;
-        }else{
-            if([IMAGES_TYPES containsObject: [path pathExtension]]){
-                object.image = [UIImage imageWithContentsOfFile: path];
-                object.objcData = [NSData dataWithContentsOfFile: path];
-                object.fileType = MKFileTypeImage;
-            }
-        }
-        
+        MKFileObject *object = [[MKFileObject alloc] initWithFilePath: [NSString stringWithFormat:@"%@/%@", filePath, str]];
         [domArray addObject: object];
     }
     [self.collectionView reloadData];
@@ -266,18 +229,11 @@ static NSString * const BackString = @"返回";
     MKCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier
                                                                            forIndexPath:indexPath];
     
-    //设置高亮背景
-    CGRect bgViewFrame = CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height);
-    UIColor *bgViewColor = [UIColor colorWithRed:68/255.0f green:179/255.0f blue:236/255.0f alpha:0.5];
-    UIView *backgroundView = [[UIView alloc] initWithFrame: bgViewFrame];
-    backgroundView.backgroundColor = bgViewColor;
-    [backgroundView.layer setCornerRadius:5];
-    [cell setSelectedBackgroundView:backgroundView];
-    
-    MKFileObject *fileObject = [domArray objectAtIndex: indexPath.row];
-    cell.titleLabel.text = fileObject.name;
-    cell.imageView.image = fileObject.image;
-    cell.imageView.imageData = fileObject.objcData;
+    cell.fileObject = domArray[indexPath.row];
+    cell.indexPath = indexPath;
+    if(!cell.previewingRegister){
+        cell.previewingRegister = self;
+    }
     
     return cell;
 }
@@ -323,6 +279,9 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
             
         case MKFileTypeTxt:
         {
+            MKPreviewingViewController *ctrl = [MKPreviewingViewController new];
+            ctrl.fileObject = fileObject;
+            [self.navigationController pushViewController: ctrl animated: YES];
             
         }
             break;
