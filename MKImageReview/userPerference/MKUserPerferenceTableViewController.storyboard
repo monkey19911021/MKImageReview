@@ -51,6 +51,40 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dOY-ic-2mI">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dOY-ic-2mI" id="oNA-vt-BbM">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="删除文件前询问" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukl-O7-nWN">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="fcb-uS-1Pz"/>
+                                                        <constraint firstAttribute="width" constant="139" id="m5f-X9-Ma7"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ye2-Xr-GPM">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="49" id="d5r-s8-Wf8"/>
+                                                        <constraint firstAttribute="height" constant="31" id="vf2-b4-xfe"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="switchAskBeforDelete:" destination="EGp-D2-oeg" eventType="valueChanged" id="Li8-Bb-aN1"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ye2-Xr-GPM" firstAttribute="centerY" secondItem="oNA-vt-BbM" secondAttribute="centerY" id="KkM-PW-HGV"/>
+                                                <constraint firstItem="ukl-O7-nWN" firstAttribute="leading" secondItem="oNA-vt-BbM" secondAttribute="leading" constant="8" id="MEt-Fp-OEH"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ye2-Xr-GPM" secondAttribute="trailing" constant="8" id="ZJf-Sa-8hx"/>
+                                                <constraint firstItem="ukl-O7-nWN" firstAttribute="centerY" secondItem="oNA-vt-BbM" secondAttribute="centerY" id="yIP-yB-7Sl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -60,6 +94,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="askBeforeDeleteSwitch" destination="Ye2-Xr-GPM" id="L85-Qu-VE7"/>
                         <outlet property="userPerferenceSwitch" destination="g81-Wv-C54" id="p0r-yC-kYD"/>
                     </connections>
                 </tableViewController>

@@ -18,16 +18,24 @@
     MKUserPerference *userPerference;
     
     __weak IBOutlet UISwitch *userPerferenceSwitch;
+    __weak IBOutlet UISwitch *askBeforeDeleteSwitch;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     userPerference = [MKUserPerference instance];
+    
     userPerferenceSwitch.on = userPerference.isSecrectModel;
+    askBeforeDeleteSwitch.on = userPerference.isAskBeforeDelete;
 }
 
 - (IBAction)switchSecrectMode:(UISwitch *)sender {
     userPerference.isSecrectModel = sender.on;
 }
+
+- (IBAction)switchAskBeforDelete:(UISwitch *)sender {
+    userPerference.isAskBeforeDelete = sender.on;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

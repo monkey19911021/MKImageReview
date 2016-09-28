@@ -9,6 +9,7 @@
 #import "MKPreviewingViewController.h"
 #import "UIImageView+MKImageView.h"
 #import "Utils.h"
+#import "MKFileCtrl.h"
 
 @interface MKPreviewingViewController ()
 
@@ -27,6 +28,8 @@
     __weak IBOutlet UILabel *diectorySubsCountLabel;
     __weak IBOutlet UILabel *diectoryCreateLabel;
     __weak IBOutlet UILabel *diectoryModifiedLabel;
+    
+    __block MKFileCtrl *fileCtrl;
 }
 
 -(instancetype)init {
@@ -39,6 +42,8 @@
         webView.scalesPageToFit = YES;
         
         directoryInfoView = [[UINib nibWithNibName: @"MKDirectoryPerviewView" bundle: nil] instantiateWithOwner: self options: nil][0];
+        
+        fileCtrl = [MKFileCtrl new];
     }
     return self;
 }
@@ -131,7 +136,8 @@
 //预览视图的操作
 - (NSArray<id<UIPreviewActionItem>> *)previewActionItems {
     
-    // 生成UIPreviewAction
+    __weak typeof(self) weakSelf = self;
+    
     UIPreviewAction *actionCopy = [UIPreviewAction actionWithTitle:@"复制到..." style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
         NSLog(@"Action 1 selected");
     }];
@@ -141,18 +147,23 @@
     }];
     
     UIPreviewAction *actionDelete = [UIPreviewAction actionWithTitle:@"删除" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
-        NSLog(@"Action 3 selected");
-    }];
-    
-    UIPreviewAction *actionDetail = [UIPreviewAction actionWithTitle:@"详细信息" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
-        NSLog(@"tap 1 selected");
+        [fileCtrl deleteItemAtPath: _fileObject.filePath complateHandler:^(NSError *error) {
+            [weakSelf.delegate fileDidDeleteAtPath: _fileObject.filePath];
+        }];
     }];
     
     UIPreviewAction *actionShare = [UIPreviewAction actionWithTitle:@"分享" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
-        NSLog(@"tap 2 selected");
+        
     }];
     
-    NSArray *actions = @[actionCopy, actionMove, actionDelete, actionDetail, actionShare];
+    NSMutableArray *actions = @[actionCopy, actionMove, actionDelete, actionShare].mutableCopy;
+    
+    if(_fileObject.fileType != MKFileTypeDirectory){
+        UIPreviewAction *actionDetail = [UIPreviewAction actionWithTitle:@"详细信息" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
+            NSLog(@"tap 1 selected");
+        }];
+        [actions insertObject:actionDetail atIndex:3];
+    }
     
     return actions;
 }

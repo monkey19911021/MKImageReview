@@ -11,6 +11,8 @@
 #import "UIUtils.h"
 
 NSString *const SecretModelKey = @"SecretModelKey";
+NSString *const AskBeforDeleteKey = @"AskBeforDeleteKey";
+
 @implementation MKUserPerference
 {
     __weak NSUserDefaults *userDefaults;
@@ -52,6 +54,20 @@ NSString *const SecretModelKey = @"SecretModelKey";
         return [[userDefaults objectForKey: SecretModelKey] boolValue];
     }else {
         self.isSecrectModel = YES;
+        return YES;
+    }
+}
+
+-(void)setIsAskBeforeDelete:(BOOL)isAskBeforeDelete {
+    [userDefaults setObject: @(isAskBeforeDelete) forKey: AskBeforDeleteKey];
+    [userDefaults synchronize];
+}
+
+-(BOOL)isAskBeforeDelete {
+    if([userDefaults objectForKey: AskBeforDeleteKey]){
+        return [[userDefaults objectForKey: AskBeforDeleteKey] boolValue];
+    }else {
+        self.isAskBeforeDelete = YES;
         return YES;
     }
 }

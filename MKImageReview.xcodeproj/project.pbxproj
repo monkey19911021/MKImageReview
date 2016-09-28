@@ -25,6 +25,7 @@
 		F441A6B1DE60F22CC9522976 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8926AF1F7042BADF8B745C99 /* libPods.a */; };
 		FB12F4CC1D9BB18E0013F5BF /* MKDirectoryPerviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB12F4C91D9BB18E0013F5BF /* MKDirectoryPerviewView.xib */; };
 		FB12F4CD1D9BB18E0013F5BF /* MKPreviewingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB12F4CB1D9BB18E0013F5BF /* MKPreviewingViewController.m */; };
+		FB12F4D11D9BB40F0013F5BF /* MKFileCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = FB12F4D01D9BB40F0013F5BF /* MKFileCtrl.m */; };
 		FB56A77E1D8FDC8700EE5F66 /* MKDocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56A77D1D8FDC8700EE5F66 /* MKDocViewController.m */; };
 		FB56A7811D8FE96A00EE5F66 /* MKAddPic.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56A7801D8FE96A00EE5F66 /* MKAddPic.m */; };
 		FB56A7841D91052000EE5F66 /* UIImageView+MKImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB56A7831D91052000EE5F66 /* UIImageView+MKImageView.m */; };
@@ -71,6 +72,8 @@
 		FB12F4C91D9BB18E0013F5BF /* MKDirectoryPerviewView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MKDirectoryPerviewView.xib; sourceTree = "<group>"; };
 		FB12F4CA1D9BB18E0013F5BF /* MKPreviewingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPreviewingViewController.h; sourceTree = "<group>"; };
 		FB12F4CB1D9BB18E0013F5BF /* MKPreviewingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPreviewingViewController.m; sourceTree = "<group>"; };
+		FB12F4CF1D9BB40F0013F5BF /* MKFileCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKFileCtrl.h; sourceTree = "<group>"; };
+		FB12F4D01D9BB40F0013F5BF /* MKFileCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKFileCtrl.m; sourceTree = "<group>"; };
 		FB56A77C1D8FDC8700EE5F66 /* MKDocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDocViewController.h; sourceTree = "<group>"; };
 		FB56A77D1D8FDC8700EE5F66 /* MKDocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDocViewController.m; sourceTree = "<group>"; };
 		FB56A77F1D8FE96A00EE5F66 /* MKAddPic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAddPic.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 			children = (
 				FB56A77F1D8FE96A00EE5F66 /* MKAddPic.h */,
 				FB56A7801D8FE96A00EE5F66 /* MKAddPic.m */,
+				FB12F4CF1D9BB40F0013F5BF /* MKFileCtrl.h */,
+				FB12F4D01D9BB40F0013F5BF /* MKFileCtrl.m */,
 			);
 			name = items;
 			sourceTree = "<group>";
@@ -407,6 +412,7 @@
 				FBD6C6FE1D94CA5B000498A2 /* NSObject+MKInstance.m in Sources */,
 				FB56A7871D910AE700EE5F66 /* NSData+MKData.m in Sources */,
 				FB56A77E1D8FDC8700EE5F66 /* MKDocViewController.m in Sources */,
+				FB12F4D11D9BB40F0013F5BF /* MKFileCtrl.m in Sources */,
 				6CC184E81C92A16C009DA0DC /* ViewController.m in Sources */,
 				6CC184E51C92A16C009DA0DC /* AppDelegate.m in Sources */,
 				FBD6C6FB1D94C9DB000498A2 /* MKUserPerference.m in Sources */,

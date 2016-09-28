@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MKFileObject.h"
+#import "MKDocViewController.h"
 
 @interface MKCollectionViewCell : UICollectionViewCell
 
@@ -21,6 +22,6 @@
 
 @property(weak, nonatomic) NSIndexPath *indexPath;
 
-@property (weak, nonatomic) UICollectionViewController *previewingRegister;
+@property (weak, nonatomic) MKDocViewController *previewingRegister;
 
 @end

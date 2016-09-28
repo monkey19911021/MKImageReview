@@ -10,4 +10,6 @@
 
 @interface MKDocViewController : UICollectionViewController
 
+- (void)loadData;
+
 @end

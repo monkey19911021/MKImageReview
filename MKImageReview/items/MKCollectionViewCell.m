@@ -12,7 +12,7 @@
 #import "MKPreviewingViewController.h"
 
 
-@interface MKCollectionViewCell() <UIViewControllerPreviewingDelegate>
+@interface MKCollectionViewCell() <UIViewControllerPreviewingDelegate, MKPreviewingViewDelegate>
 
 @end
 
@@ -75,7 +75,7 @@
 }
 
 //注册3DTouch
--(void)setPreviewingRegister:(UICollectionViewController *)previewingRegister {
+-(void)setPreviewingRegister:(MKDocViewController *)previewingRegister {
     _previewingRegister = previewingRegister;
     if(!ctrlPreviewing){
         if (_previewingRegister.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
@@ -101,6 +101,7 @@
     }else{
         MKPreviewingViewController *ctrl = [MKPreviewingViewController new];
         ctrl.fileObject = _fileObject;
+        ctrl.delegate = self;
         
         return ctrl;
     }
@@ -109,6 +110,11 @@
 //pop
 -(void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
     [_previewingRegister collectionView:_previewingRegister.collectionView didSelectItemAtIndexPath: _indexPath];
+}
+
+#pragma mark - MKPreviewDelegate
+-(void)fileDidDeleteAtPath:(NSString *)filePath {
+    [_previewingRegister loadData];
 }
 
 -(void)dealloc {

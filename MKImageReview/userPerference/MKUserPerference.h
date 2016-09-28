@@ -11,6 +11,10 @@
 
 @interface MKUserPerference : NSObject
 
+//是否开启隐私模式
 @property (assign, nonatomic) BOOL isSecrectModel;
+
+//是否询问用户删除文件
+@property (assign, nonatomic) BOOL isAskBeforeDelete;
 
 @end
