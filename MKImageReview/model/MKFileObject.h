@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, MKFileType) {
+    
+    MKFileTypeUnknown = -1, //未知
+    
     MKFileTypeDirectory = 0, //目录
     
     MKFileTypeImage = 1, //图片

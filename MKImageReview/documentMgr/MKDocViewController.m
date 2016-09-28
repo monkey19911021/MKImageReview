@@ -287,6 +287,11 @@ didSelectItemAtIndexPath:(NSIndexPath *)indexPath
             break;
             
         default:
+        {
+            [UIUtils showAlertWithTitle: @"未支持打开该类型文件"
+                                message: nil
+                                actions: @[[UIAlertAction actionWithTitle: @"确定" style: UIAlertActionStyleCancel handler: nil]] textFields: nil];
+        }
             break;
     }
 }

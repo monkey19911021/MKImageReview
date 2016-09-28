@@ -74,6 +74,7 @@
     }
 }
 
+//注册3DTouch
 -(void)setPreviewingRegister:(UICollectionViewController *)previewingRegister {
     _previewingRegister = previewingRegister;
     if(!ctrlPreviewing){

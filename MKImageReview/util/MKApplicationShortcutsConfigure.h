@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+//设置app的快捷方式
 @interface MKApplicationShortcutsConfigure : NSObject
 
 +(void)configure;

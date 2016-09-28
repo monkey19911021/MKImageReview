@@ -70,6 +70,7 @@ const NSString *TEXT_TYPES[TEXT_TYPES_COUNT] = {@"txt", @"TXT", @"doc", @"docx",
     BOOL isDirectory = true;
     [fileMgr fileExistsAtPath: filePath isDirectory: &isDirectory];
     self.image = [UIImage imageNamed: @"fielIcon"];
+    self.fileType = MKFileTypeUnknown;
     
     if(isDirectory){
         self.image = [UIImage imageNamed: @"dirIcon"];
