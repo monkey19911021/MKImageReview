@@ -9,6 +9,7 @@
 #import "MKPreviewingViewController.h"
 #import "UIImageView+MKImageView.h"
 #import "Utils.h"
+#import "UIUtils.h"
 #import "MKFileCtrl.h"
 
 @interface MKPreviewingViewController ()
@@ -147,13 +148,17 @@
     }];
     
     UIPreviewAction *actionDelete = [UIPreviewAction actionWithTitle:@"删除" style:UIPreviewActionStyleDestructive handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
-        [fileCtrl deleteItemAtPath: _fileObject.filePath complateHandler:^(NSError *error) {
+        [fileCtrl deleteItemAtPaths: @[_fileObject.filePath] complateHandler:^(NSError *error) {
             [weakSelf.delegate fileDidDeleteAtPath: _fileObject.filePath];
         }];
     }];
     
     UIPreviewAction *actionShare = [UIPreviewAction actionWithTitle:@"分享" style:UIPreviewActionStyleDefault handler:^(UIPreviewAction * _Nonnull action, UIViewController * _Nonnull previewViewController) {
-        
+        [fileCtrl shareItemAtPaths: @[_fileObject.filePath] complateHandler:^(NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIUtils showAlertWithTitle: @"分享失败" message: error.localizedDescription actions: @[[UIAlertAction actionWithTitle:@"确定" style: UIAlertActionStyleCancel handler: nil]] textFields: nil];
+            });
+        }];
     }];
     
     NSMutableArray *actions = @[actionCopy, actionMove, actionDelete, actionShare].mutableCopy;

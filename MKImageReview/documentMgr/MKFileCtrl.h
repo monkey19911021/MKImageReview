@@ -14,9 +14,17 @@
 /**
  删除文件，包括文件夹
 
- @param filePath 路径
+ @param filePath 路径集合
  */
--(void)deleteItemAtPath:(NSString *)filePath complateHandler:(void (^)(NSError *))handler;
+-(void)deleteItemAtPaths:(NSArray<NSString *> *)filePaths complateHandler:(void (^)(NSError *))handler;
 
+
+/**
+ 分享文件，包括文件夹，文件夹会经过压缩
+
+ @param filePath 路径
+ @param handler
+ */
+-(void)shareItemAtPaths:(NSArray<NSString *> *)filePaths complateHandler:(void (^)(NSError *))handler;
 
 @end
